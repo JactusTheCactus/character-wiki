@@ -1,6 +1,6 @@
 [
     {
-        "id": "char1",
+        "id": "0",
         "first_name": "Alice",
         "last_name": "Everwood",
         "pronunciation": "Ah-lis Ev-er-wood",
@@ -8,10 +8,12 @@
         "region": "Western Plains",
         "city": "Rivertown",
         "sex": "Female",
-        "species": "Elf"
+        "species": [
+            "Elf"
+        ]
     },
     {
-        "id": "char2",
+        "id": "1",
         "first_name": "Borin",
         "last_name": "Stonefist",
         "pronunciation": "Bor-in Stone-fist",
@@ -19,6 +21,8 @@
         "region": "Mountain Clans",
         "city": "Highpeak",
         "sex": "Male",
-        "species": "Dwarf"
+        "species": [
+            "Dwarf"
+        ]
     }
 ]
