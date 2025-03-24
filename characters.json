@@ -1,28 +1,21 @@
 [
     {
-        "id": "0",
-        "first_name": "Alice",
-        "last_name": "Everwood",
-        "pronunciation": "Ah-lis Ev-er-wood",
-        "country": "Lioran",
-        "region": "Western Plains",
-        "city": "Rivertown",
-        "sex": "Female",
-        "species": [
-            "Elf"
-        ]
-    },
-    {
-        "id": "1",
-        "first_name": "Borin",
-        "last_name": "Stonefist",
-        "pronunciation": "Bor-in Stone-fist",
-        "country": "Drakos",
-        "region": "Mountain Clans",
-        "city": "Highpeak",
+        "first_name": "John",
+        "last_name": "Doe",
+        "pronunciation": "[DZHON]-[DOH]",
+        "country": "USA",
+        "region": "New York",
+        "city": "NYC",
         "sex": "Male",
         "species": [
-            "Dwarf"
+            "Human",
+            "Caucasian"
+        ],
+        "profession": "Student",
+        "languages": [
+            "English",
+            "French",
+            "Spanish"
         ]
     }
 ]

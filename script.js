@@ -18,30 +18,57 @@ document.addEventListener("DOMContentLoaded", async function () {
             li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${character.first_name} ${character.last_name}</a>`;
             list.appendChild(li);
         });
-        
-    } else if (page === "character.html") {
-        // If on character.html, get the character ID from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const characterId = urlParams.get("index");
-        const character = characters.find(c => c.id === characterId);
 
-        // If character exists, insert their data into the page
-        function ifKeyExists(id,key) {
-            if (key) {
-                return document.getElementById(`character-${id}`).textContent = key;
+    } else if (page === "character.html") {
+        // If on character.html, get the character index from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const characterIndex = parseInt(urlParams.get("index"), 10);
+
+        // Validate index and fetch the character
+        if (!isNaN(characterIndex) && characterIndex >= 0 && characterIndex < characters.length) {
+            const character = characters[characterIndex];
+
+            function affix(input, prefix = '', suffix = '') {
+                return input ? `${prefix}${input}${suffix}` : '';
             }
-        }
-        if (character) {
-            ifKeyExists('first',character.first_name)
-            ifKeyExists('middle',character.middle_name)
-            ifKeyExists('last',character.last_name)
-            ifKeyExists('pronunciation',character.pronunciation)
-            ifKeyExists('country',character.country)
-            ifKeyExists('region',character.region)
-            ifKeyExists('city',character.city)
-            ifKeyExists('sex',character.sex)
-            ifKeyExists('species',character.species[0])
-            ifKeyExists('race',character.species[1])
+
+            // Function to insert data only if it exists
+            function ifKeyExists(id, key, prefix, suffix) {
+                if (key) {
+                    document.getElementById(`character-${id}`).innerHTML = affix(key, prefix, suffix);
+                }
+            }
+
+            // Populate character details
+            ifKeyExists('first', character.first_name);
+            ifKeyExists('middle', character.middle_name);
+            ifKeyExists('last', character.last_name);
+            ifKeyExists('pronunciation', character.pronunciation,'&nbsp;<sub><i>Pronunciation</i></sub><br>');
+            ifKeyExists('profession', character.profession,'<b>Profession: </b>');
+            if (character.country) {
+                document.getElementById(`character-pob`).innerHTML =
+                    `<b>Place of Birth: </b>${affix(character.city, '', ', ')}${affix(character.region, '', ', ')}${character.country}`;
+            }
+            if (character.country) {
+                let langList = `<b>Spoken Languages:</b> <i>`;
+                character.languages.forEach((language,index) => {
+                    langList += language;
+                    if (index === 0) {
+                        langList += '</i>'
+                    }
+                    if (index !== character.languages.length-1) {
+                        langList +=', ';
+                    }
+                }
+                );
+                document.getElementById(`character-pob`).innerHTML = langList
+            }
+            ifKeyExists('sex', character.sex, '<b>Sex: </b>');
+            if (character.species && character.species[0]) {
+                document.getElementById(`character-species`).innerHTML =
+                    `<b>Species: </b>${character.species[0]}${character.species[1] ? ` (${character.species[1]})` : ''}`;
+            }
+
         } else {
             document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
         }
