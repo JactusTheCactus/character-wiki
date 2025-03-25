@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             // Populate character details
-            document.getElementById(`character-name`).innerHTML = `${character.first_name} ${character.middle_name ? `${character.middle_name} ` : ''}${character.last_name}`;
+            document.getElementById(`character-name`).innerHTML = `${character.first_name} ${character.middle_name ? `<br>${character.middle_name}<br>` : '<br>'}${character.last_name}`;
             ifKeyExists('pronunciation', character.pronunciation,'&nbsp;<sub><i>Pronunciation</i></sub><br>');
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
             if (character.country) {
