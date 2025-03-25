@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         characters.forEach((character, index) => {
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
-            li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${character.first_name} ${character.middle_name ? `${character.middle_name} ` : ''}${character.last_name}</a>`;
+            li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${character.first_name}${character.middle_name ? `<br>${character.middle_name}<br>` : '<br>'}${character.last_name}</a>`;
             list.appendChild(li);
         });
 
