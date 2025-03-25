@@ -1,7 +1,7 @@
 [
     {
         "first_name": "First-Name",
-        "middle_name": "Middle-Name (optional)",
+        "middle_name": "Middle-Name-(optional)",
         "last_name": "Last-Name",
         "pronunciation": "[FIRST-name]-[optional-MIDDLE-name]-[LAST-name]",
         "country": "Country of Birth",
