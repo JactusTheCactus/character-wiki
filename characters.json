@@ -1,21 +1,23 @@
 [
     {
-        "first_name": "John",
-        "last_name": "Doe",
-        "pronunciation": "[DZHON]-[DOH]",
-        "country": "USA",
-        "region": "New York",
-        "city": "NYC",
-        "sex": "Male",
+        "first_name": "First Name",
+        "middle_name": "Middle Name (optional)"
+        "last_name": "Last Name",
+        "pronunciation": "[FIRST-name]-[MIDDLE-name]-[LAST-name]",
+        "country": "Country of Birth",
+        "region": "Province/State/Territory of Birth",
+        "city": "City of Birth",
+        "sex": "Sex",
         "species": [
-            "Human",
-            "Caucasian"
+            "Species",
+            "Subspecies (optional)"
         ],
-        "profession": "Student",
+        "profession": "Profession",
         "languages": [
-            "English",
-            "French",
-            "Spanish"
+            "Native Language",
+            "First Learned Language",
+            "Second Learned Language",
+            "Etc."
         ]
     }
 ]
