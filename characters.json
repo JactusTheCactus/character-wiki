@@ -1,16 +1,16 @@
 [
     {
         "first_name": "First-Name",
-        "middle_name": "Middle-Name-(optional)",
+        "middle_name": "Middle-Name",
         "last_name": "Last-Name",
-        "pronunciation": "[FIRST-name]<br>[optional-MIDDLE-name]<br>[LAST-name]",
+        "pronunciation": "[FIRST-name]<br>[MIDDLE-name]<br>[LAST-name]",
         "country": "Country of Birth",
         "region": "Province/State/Territory of Birth",
         "city": "City of Birth",
         "sex": "Sex",
         "species": [
             "Species",
-            "Subspecies (optional)"
+            "Subspecies"
         ],
         "profession": "Profession",
         "languages": [
