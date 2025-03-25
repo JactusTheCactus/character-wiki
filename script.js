@@ -40,9 +40,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             // Populate character details
-            ifKeyExists('first', character.first_name);
-            ifKeyExists('middle', character.middle_name);
-            ifKeyExists('last', character.last_name);
             if (key) {
                 document.getElementById(`character-name`).innerHTML = `${character.first_name} ${character.middle_name ? `${character.middle_name} ` : ''}${character.last_name}`;
             }
