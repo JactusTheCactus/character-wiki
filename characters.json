@@ -15,9 +15,7 @@
         "profession": "Profession",
         "languages": [
             "Native Language",
-            "First Learned Language",
-            "Second Learned Language",
-            "Etc."
+            "Learned Language"
         ]
     }
 ]
