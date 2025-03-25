@@ -1,8 +1,8 @@
 [
     {
-        "first_name": "First Name",
-        "middle_name": "Middle Name",
-        "last_name": "Last Name",
+        "first_name": "First-Name",
+        "middle_name": "Middle-Name",
+        "last_name": "Last-Name",
         "pronunciation": "[FIRST-name]-[MIDDLE-name]-[LAST-name]",
         "country": "Country of Birth",
         "region": "Province/State/Territory of Birth",
