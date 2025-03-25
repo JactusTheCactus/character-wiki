@@ -19,5 +19,108 @@
             "Second Learned Language",
             "Etc."
         ]
+    },
+    {
+        "first_name": "Vaelin",
+        "middle_name": "Drayth",
+        "last_name": "Stormrend",
+        "pronunciation": "VAY-lin DRAYTH STORM-rend",
+        "country": "The Frostlands",
+        "region": "Icereach Tundra",
+        "city": "Winterspire",
+        "sex": "Male",
+        "species": [
+            "Human",
+            "Iceborn"
+        ],
+        "profession": "Warden of the North",
+        "languages": [
+            "Old Nordish",
+            "Common Tongue",
+            "Runespeak"
+        ]
+    },
+    {
+        "first_name": "Sylvara",
+        "middle_name": "Naeris",
+        "last_name": "Moonshadow",
+        "pronunciation": "sill-VAH-rah NAY-riss MOON-shadow",
+        "country": "The Eldenwood",
+        "region": "Syltharion Glade",
+        "city": "Elvenholm",
+        "sex": "Female",
+        "species": [
+            "Elf",
+            "Moon Elf"
+        ],
+        "profession": "Arcane Ranger",
+        "languages": [
+            "Elvish",
+            "Sylvan",
+            "Draconic",
+            "Common"
+        ]
+    },
+    {
+        "first_name": "Gorrak",
+        "middle_name": "Ironjaw",
+        "last_name": "Bloodtusk",
+        "pronunciation": "GOR-rak EYE-run-jaw BLOOD-tusk",
+        "country": "The Blighted Steppes",
+        "region": "Orcish Wastes",
+        "city": "Skullhold",
+        "sex": "Male",
+        "species": [
+            "Orc",
+            "Warborn"
+        ],
+        "profession": "Warlord",
+        "languages": [
+            "Orcish",
+            "Common",
+            "Giant"
+        ]
+    },
+    {
+        "first_name": "Zephira",
+        "middle_name": "Solwyn",
+        "last_name": "Duskwhisper",
+        "pronunciation": "zeh-FEE-rah SOHL-win DUSK-whisper",
+        "country": "The Shattered Isles",
+        "region": "Evershade Archipelago",
+        "city": "Shadowcove",
+        "sex": "Female",
+        "species": [
+            "Tiefling",
+            "Stormborn"
+        ],
+        "profession": "Sorceress of the Tempest",
+        "languages": [
+            "Infernal",
+            "Common",
+            "Abyssal",
+            "Celestial"
+        ]
+    },
+    {
+        "first_name": "Thaldrik",
+        "middle_name": "Runehammer",
+        "last_name": "Stoneforge",
+        "pronunciation": "THAL-drik ROON-ham-mer STONE-forge",
+        "country": "The Dwarven Halls",
+        "region": "Ironpeak Mountains",
+        "city": "Khazdural",
+        "sex": "Male",
+        "species": [
+            "Dwarf",
+            "Mountain Dwarf"
+        ],
+        "profession": "Runesmith",
+        "languages": [
+            "Dwarvish",
+            "Runic Script",
+            "Common",
+            "Gnomish"
+        ]
     }
 ]
