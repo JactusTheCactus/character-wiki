@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             // Function to insert data only if it exists
-            function ifKeyExists(id, key, prefix, suffix) {
+            function ifKeyExists(id, key, prefix='', suffix='') {
                 if (key) {
                     document.getElementById(`character-${id}`).innerHTML = affix(key, prefix, suffix);
                 }
