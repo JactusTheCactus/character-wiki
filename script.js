@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             ifKeyExists('first', character.first_name);
             ifKeyExists('middle', character.middle_name);
             ifKeyExists('last', character.last_name);
+            if (key) {
+                document.getElementById(`character-name`).innerHTML = `${character.first_name}${character.middle_name}${character.name_name}`;
+            }
             ifKeyExists('pronunciation', character.pronunciation,'&nbsp;<sub><i>Pronunciation</i></sub><br>');
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
             if (character.country) {
