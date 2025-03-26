@@ -45,9 +45,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
             if (character.country) {
                 document.getElementById(`character-pob`).innerHTML =
-                    `<b>Place of Birth: </b>${affix(character.city, '', ', ')}${affix(character.region, '', ', ')}${character.country}`;
+                    `<b>Place of Birth: </b>${character.city ? `${character.city}, ` : ''}${character.region ? `${character.region}, ` : ''}${character.country}`;
             }
-            if (character.country) {
+            if (character.languages) {
                 let langList = `<b>Spoken Languages:</b> <i>`;
                 character.languages.forEach((language,index) => {
                     langList += language;
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     }
                 }
                 );
-                document.getElementById(`character-pob`).innerHTML = langList
+                document.getElementById(`character-languages`).innerHTML = langList
             }
             ifKeyExists('sex', character.sex, '<b>Sex: </b>');
             if (character.species && character.species[0]) {
