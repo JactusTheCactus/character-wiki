@@ -14,7 +14,8 @@
         "languages": [
             "English",
             "Spanish"
-        ]
+        ],
+        "description": "Description"
     },
     {
         "first_name": "Jane",
@@ -31,6 +32,7 @@
         "languages": [
             "English",
             "French"
-        ]
+        ],
+        "description": "Description"
     }
 ]
