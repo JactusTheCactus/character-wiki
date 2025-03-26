@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (page === "index.html" || page === "") {
         // If on index.html, populate the character list
         const list = document.getElementById("character-list");
-        characters.forEach((character, index) => {
+        characters.slice(0, -1).forEach((character, index) => {
             const fullName = [character.first_name, character.middle_name, character.last_name].filter(Boolean).join(' ');
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
