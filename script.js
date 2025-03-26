@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (page === "index.html" || page === "") {
         // If on index.html, populate the character list
         const list = document.getElementById("character-list");
-        characters.slice(1,-1).forEach((character, index) => {
+        characters.forEach((character, index) => {
             const fullName = [character.first_name, character.middle_name, character.last_name].filter(Boolean).join(' ');
+            console.log(fullName);
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
             li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${fullName}</a>`;
