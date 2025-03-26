@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 document.getElementById(`character-species`).innerHTML =
                     `<b>Species: </b>${character.species[0]}${character.species[1] ? ` (${character.species[1]})` : ''}`;
             }
-            ifKeyExists('description', character.description, '');
+            ifKeyExists('description', character.description);
 
         } else {
             document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
