@@ -2,7 +2,7 @@
     {
         "first_name": "John",
         "last_name": "Doe",
-        "pronunciation": "[DZHON]<br>[DOH]",
+        "pronunciation": "[DZHON]-[DOH]",
         "country": "USA",
         "region": "Florida",
         "city": "Tampa",
@@ -20,7 +20,7 @@
     {
         "first_name": "Jane",
         "last_name": "Doe",
-        "pronunciation": "[DZHAYN]<br>[DOH]",
+        "pronunciation": "[DZHAYN]-[DOH]",
         "country": "USA",
         "region": "Georgia",
         "city": "Atlanta",
