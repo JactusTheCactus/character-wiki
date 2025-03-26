@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Fetch character data
     const response = await fetch("characters.json");
     const characters = await response.json();
+    characters.forEach((character, index) => {
+        const fullName = `${character.first_name ? `${character.first_name}` : ''} ${character.middle_name ? ` ${character.middle_name} ` : ''} ${character.last_name ? `${character.last_name}` : ''}`.replace(/  /g, ' ')
+    });
     // Sort characters by last name
     characters.sort((a, b) => a.last_name.localeCompare(b.last_name));
     // Get the current page filename
@@ -11,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         const list = document.getElementById("character-list");
         characters.forEach((character, index) => {
             const li = document.createElement("li");
-            const fullName = `${character.first_name ? `${character.first_name}` : ''} ${character.middle_name ? ` ${character.middle_name} ` : ''} ${character.last_name ? `${character.last_name}` : ''}`.replace(/  /g, ' ')
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
             li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${fullName}</a>`;
             list.appendChild(li);
