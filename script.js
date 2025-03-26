@@ -66,6 +66,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                 document.getElementById(`character-species`).innerHTML =
                     `<b>Species: </b>${character.species[0]}${character.species[1] ? ` (${character.species[1]})` : ''}`;
             }
+            ifKeyExists('sex', character.sex, '<b>Sex: </b>');
+            if (character.species && character.species[0]) {
+                document.getElementById(`character-species`).innerHTML =
+                    `<b>Species: </b>${character.species[0]}${character.species[1] ? ` (${character.species[1]})` : ''}`;
+            }
 
         } else {
             document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
