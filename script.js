@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
     // Fetch character data
     const response = await fetch("characters.json");
-    const characters = await response.json();
+    let characters = await response.json();
     characters = characters.filter(character => character.first_name || character.middle_name || character.last_name);
     // Sort characters by last name
     characters.sort((a, b) => a.last_name.localeCompare(b.last_name));
