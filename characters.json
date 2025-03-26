@@ -1,40 +1,36 @@
 [
     {
-        "first_name": "First-Name",
-        "middle_name": "Middle-Name",
-        "last_name": "Last-Name",
-        "pronunciation": "[FIRST-name]<br>[MIDDLE-name]<br>[LAST-name]",
-        "country": "Country of Birth",
-        "region": "Province/State/Territory of Birth",
-        "city": "City of Birth",
-        "sex": "Sex",
+        "first_name": "John",
+        "last_name": "Doe",
+        "pronunciation": "[DZHON]<br>[DOH]",
+        "country": "USA",
+        "region": "Florida",
+        "city": "Tampa",
+        "sex": "Male",
         "species": [
-            "Species",
-            "Subspecies"
+            "Human"
         ],
-        "profession": "Profession",
+        "profession": "Student",
         "languages": [
-            "Native Language",
-            "Learned Language"
+            "English",
+            "Spanish"
         ]
     },
     {
-        "first_name": "First-Name",
-        "middle_name": "Middle-Name",
-        "last_name": "Last-Name",
-        "pronunciation": "[FIRST-name]<br>[MIDDLE-name]<br>[LAST-name]",
-        "country": "Country of Birth",
-        "region": "Province/State/Territory of Birth",
-        "city": "City of Birth",
-        "sex": "Sex",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "pronunciation": "[DZHAYN]<br>[DOH]",
+        "country": "USA",
+        "region": "Georgia",
+        "city": "Atlanta",
+        "sex": "Female",
         "species": [
-            "Species",
-            "Subspecies"
+            "Human"
         ],
-        "profession": "Profession",
+        "profession": "Professor",
         "languages": [
-            "Native Language",
-            "Learned Language"
+            "English",
+            "French"
         ]
     }
 ]
