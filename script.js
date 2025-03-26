@@ -11,8 +11,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         const list = document.getElementById("character-list");
         characters.forEach((character, index) => {
             const li = document.createElement("li");
+            const character.fullName = `${character.first_name ? `${character.first_name}` : ''} ${character.middle_name ? ` ${character.middle_name} ` : ''} ${character.last_name ? `${character.last_name}` : ''}`.replace(/  /g, ' ')
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
-            li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${character.first_name}${character.middle_name ? ` ${character.middle_name} ` : ' '}${character.last_name}</a>`;
+            li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${character.fullName}</a>`;
             list.appendChild(li);
         });
     } else if (page === "character.html") {
@@ -32,8 +33,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
             }
             // Populate character details
-            document.title = `${character.first_name}${character.middle_name ? ` ${character.middle_name} ` : ' '}${character.last_name}`;
-            document.getElementById(`character-name`).innerHTML = `${character.first_name}${character.middle_name ? ` ${character.middle_name} ` : ' '}${character.last_name}<hr>`;
+            document.title = `${character.fullName}`;
+            document.getElementById(`character-name`).innerHTML = `${character.fullName}<hr>`;
             ifKeyExists('pronunciation', character.pronunciation,'&nbsp;<sub><i>Pronunciation</i></sub><br>');
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
             if (character.country) {
