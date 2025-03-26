@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const list = document.getElementById("character-list");
         characters.forEach((character, index) => {
             const fullName = [character.first_name, character.middle_name, character.last_name].filter(Boolean).join(' ');
-            console.log(fullName);
+            console.log(`Index: ${index}; Name: ${fullName};`);
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
             li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${fullName}</a>`;
