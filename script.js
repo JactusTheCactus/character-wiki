@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         (character.name[1] && character.name[1][0]) || 
         (character.name[2] && character.name[2][0])
     );
-    console.log('Unsorted')
-    characters.forEach((character, index) => console.log(`Index: ${index}; Name: ${getFullName(character,'official')}`))
     // Sort characters by last name
     characters.sort((a, b) => {
         const lastA = a.name[a.name.length - 1][0] || ""; // Get last name, fallback to empty string
@@ -31,9 +29,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (page === "index.html" || page === "") {
         // If on index.html, populate the character list
         const list = document.getElementById("character-list");
-        console.log('Sorted')
         characters.forEach((character, index) => {
-            console.log(`Index: ${index}; Name: ${getFullName(character,'official')}`);
+            console.log(getFullName(character,'official'));
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
             li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${getFullName(character,'official')}</a>`;
