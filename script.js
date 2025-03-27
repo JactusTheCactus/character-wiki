@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.log(character.profession)
             if (character.country) {
                 document.getElementById(`character-pob`).innerHTML =
-                    `<b>Place of Birth: </b>${[character.city,character.region,character.country].filter(Boolean).join(' ')}`
+                    `<b>Place of Birth: </b>${character.pob.reverse().filter(Boolean).join(', ')}`
                 console.log([character.city,character.region,character.country].filter(Boolean).join(' '))
             }
             if (character.languages) {
