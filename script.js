@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (character.pob) {
                 document.getElementById(`character-pob`).innerHTML =
                     `<b>Place of Birth: </b>${character.pob.reverse().filter(Boolean).join(', ')}`
-                console.log([character.city,character.region,character.country].filter(Boolean).join(' '))
+                console.log(character.pob.reverse().filter(Boolean).join(', '))
             }
             if (character.languages) {
                 let langList = `<b>Spoken Languages:</b> <i>`;
