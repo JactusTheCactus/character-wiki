@@ -1,7 +1,9 @@
 [
     {
-        "first_name": "Anișoara",
-        "last_name": "Căpățână",
+        "name": [
+            "Anișoara",
+            "Căpățână"
+        ],
         "pronunciation": "[ah-ni-sho-AR-ah]-[kuh-puh-TSUU-nuh]",
         "country": "România",
         "region": "București – Ilfov",
