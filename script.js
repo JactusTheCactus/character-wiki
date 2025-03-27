@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Fetch character data
     const response = await fetch("characters.json");
     let characters = await response.json();
-    characters = characters.filter(character => character.name[0] || character.name[1] || character.name[2]);
+    characters = characters.filter(character => character.name[0][0] || character.name[1][0] || character.name[2][0]);
     // Sort characters by last name
     characters.sort((a, b) => {
-        const lastA = a.name[a.name.length - 1] || ""; // Get last name, fallback to empty string
-        const lastB = b.name[b.name.length - 1] || "";
+        const lastA = a.name[a.name.length - 1][0] || ""; // Get last name, fallback to empty string
+        const lastB = b.name[b.name.length - 1][0] || "";
         return lastA.localeCompare(lastB);
     });
     // Get the current page filename
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // If on index.html, populate the character list
         const list = document.getElementById("character-list");
         characters.forEach((character, index) => {
-            const fullName = character.name.filter(Boolean).join(' ');
+            const fullName = [character.name[0][0],character.name[1][0],character.name[2][0],].filter(Boolean).join(' ');
             console.log(`Index: ${index}; Name: ${fullName}`);
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
             if (character.country) {
                 document.getElementById(`character-pob`).innerHTML =
-                    `<b>Place of Birth: </b>${character.city ? `${character.city}, ` : ''}${character.region ? `${character.region}, ` : ''}${character.country}`;
+                    `<b>Place of Birth: </b>${[character.city,character.region,character.country].filter(Boolean).join(' ')}`
             }
             if (character.languages) {
                 let langList = `<b>Spoken Languages:</b> <i>`;
