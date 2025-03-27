@@ -10,9 +10,11 @@
                 "[kuh-puh-TSUU-nuh]"
             ]
         ],
-        "country": "România",
-        "region": "București – Ilfov",
-        "city": "București",
+        "pob": [
+            "România",
+            "București – Ilfov",
+            "București"
+        ],
         "sex": "Female",
         "species": [
             "Human"
