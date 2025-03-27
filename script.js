@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 console.log(`${character.species[0]}${character.species[1] ? ` (${character.species[1]})` : ''}`)
             }
             ifKeyExists('description', character.description, '<hr>');
-            console.log(character.description.replace(/<h2>/g,'\n').replace(/<\/h2>/g,'\n').replace(/<p>/g,'\n').replace(/<\/p>/g,'\n').replace(/<br>/g,'\n'))
+            console.log(character.description.replace(/<h2>/g,'\n').replace(/<\/h2>/g,'\n').replace(/<p>/g,'\n').replace(/<\/p>/g,'\n').replace(/<br>/g,'\n').replace(/\n\n/g,'\n'))
         } else {
             document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
         }
