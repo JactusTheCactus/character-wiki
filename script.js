@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", async function () {
+    function getFullName(character) {
+        let first = character.name[0][0];
+        let last = character.name.slice(-1)[0][0]; // Last element in the name array
+        let middle = character.name.length === 3 ? character.name[1][0] : null;
+
+        return middle ? `${last}, ${first} ${middle}` : `${last}, ${first}`;
+    }
     // Fetch character data
     const response = await fetch("characters.json");
     let characters = await response.json();
@@ -19,8 +26,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // If on index.html, populate the character list
         const list = document.getElementById("character-list");
         characters.forEach((character, index) => {
-            const fullName = [(character.name[0] ? character.name[0][0] : ''),(character.name[1] ? character.name[1][0] : ''),(character.name[2] ? character.name[2][0] : '')].filter(Boolean).join(' ');
-            console.log(`Index: ${index}; Name: ${fullName}`);
+            console.log(`Index: ${index}; Name: ${getFullName(character)}`);
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
             li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${fullName}</a>`;
