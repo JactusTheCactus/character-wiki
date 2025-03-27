@@ -2,16 +2,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Fetch character data
     const response = await fetch("characters.json");
     let characters = await response.json();
-    characters = characters.filter(character => character.first_name || character.middle_name || character.last_name);
+    characters = characters.filter(character => character.name[0] || character.name[1] || character.name[2]);
     // Sort characters by last name
-    characters.sort((a, b) => a.last_name.localeCompare(b.last_name));
+    characters.sort((a, b) => a.name[-1].localeCompare(b.name[-1]));
     // Get the current page filename
     const page = window.location.pathname.split("/").pop();
     if (page === "index.html" || page === "") {
         // If on index.html, populate the character list
         const list = document.getElementById("character-list");
         characters.forEach((character, index) => {
-            const fullName = [character.first_name, character.middle_name, character.last_name].filter(Boolean).join(' ');
+            const fullName = character.name.filter(Boolean).join(' ');
             console.log(`Index: ${index}; Name: ${fullName}`);
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
             }
             // Populate character details
-            const fullName = [character.first_name, character.middle_name, character.last_name].filter(Boolean).join(' ');
+            const fullName = character.name.filter(Boolean).join(' ');
             document.title = `${fullName}`;
             document.getElementById(`character-name`).innerHTML = `${fullName}<hr>`;
             ifKeyExists('pronunciation', character.pronunciation,'&nbsp;<sub><i>Pronunciation</i></sub><br>');
