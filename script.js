@@ -2,7 +2,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Fetch character data
     const response = await fetch("characters.json");
     let characters = await response.json();
-    characters = characters.filter(character => character.name[0][0] || character.name[1][0] || character.name[2][0]);
+    characters = characters.filter(character => 
+        (character.name[0] && character.name[0][0]) || 
+        (character.name[1] && character.name[1][0]) || 
+        (character.name[2] && character.name[2][0])
+    );
     // Sort characters by last name
     characters.sort((a, b) => {
         const lastA = a.name[a.name.length - 1][0] || ""; // Get last name, fallback to empty string
