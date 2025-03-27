@@ -26,10 +26,15 @@
     },
     {
         "name": [
-            "Aurora",
-            "Văduva"
+            [
+                "Aurora",
+                "[oh-ROR-ah]"
+            ],
+            [
+                "Văduva",
+                "[vuh-DOO-vah]"
+            ]
         ],
-        "pronunciation": "[oh-ROR-ah]-[vuh-DOO-vah]",
         "country": "România",
         "region": "Județul Constanța",
         "city": "Constanța",
@@ -46,10 +51,15 @@
     },
     {
         "name": [
-            "Cătălina",
-            "Vlachou"
+            [
+                "Cătălina",
+                "[kuh-tuh-LEE-nah]"
+            ],
+            [
+                "Vlachou",
+                "[vla-KOO]"
+            ]
         ],
-        "pronunciation": "[kuh-tuh-LEE-nah]-[vla-KOO]",
         "country": "România",
         "region": "",
         "city": "",
@@ -67,10 +77,15 @@
     },
     {
         "name": [
-            "Charlize",
-            "Rothschild"
+            [
+                "Charlize",
+                "[shar-LEEZ]"
+            ],
+            [
+                "Rothschild",
+                "[ROTE-shild]"
+            ]
         ],
-        "pronunciation": "[shar-LEEZ]-[ROTE-shild]",
         "country": "USA",
         "region": "Pennsylvania",
         "city": "Philadelphia",
@@ -87,9 +102,15 @@
     },
     {
         "name": [
-            ""
+            [
+                "",
+                ""
+            ],
+            [
+                "",
+                ""
+            ]
         ],
-        "pronunciation": "",
         "country": "",
         "region": "",
         "city": "",
