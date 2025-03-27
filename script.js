@@ -1,10 +1,14 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    function getFullName(character) {
+    function getFullName(character,format) {
         let first = character.name[0][0];
         let last = character.name.slice(-1)[0][0]; // Last element in the name array
         let middle = character.name.length === 3 ? character.name[1][0] : null;
-
-        return middle ? `${last}, ${first} ${middle}` : `${last}, ${first}`;
+        if (format === 'personal') {
+            return middle ? `${first} ${middle} ${last}` : `${first} ${last}`;
+        }
+        else if (format === 'official') {
+            return middle ? `${last}, ${first} ${middle}` : `${last}, ${first}`;
+        }
     }
     // Fetch character data
     const response = await fetch("characters.json");
@@ -26,10 +30,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         // If on index.html, populate the character list
         const list = document.getElementById("character-list");
         characters.forEach((character, index) => {
-            console.log(`Index: ${index}; Name: ${getFullName(character)}`);
+            console.log(`Index: ${index}; Name: ${getFullName(character,'official')}`);
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
-            li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${fullName}</a>`;
+            li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800">${getFullName(character,'official')}</a>`;
             list.appendChild(li);
         });
     } else if (page === "character.html") {
@@ -50,8 +54,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
             // Populate character details
             const fullName = character.name.filter(Boolean).join(' ');
-            document.title = `${fullName}`;
-            document.getElementById(`character-name`).innerHTML = `${fullName}<hr>`;
+            document.title = `${getFullName(character,'personal')}`;
+            document.getElementById(`character-name`).innerHTML = `${getFullName(character,'personal')}<hr>`;
             ifKeyExists('pronunciation', character.pronunciation,'&nbsp;<sub><i>Pronunciation</i></sub><br>');
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
             if (character.country) {
