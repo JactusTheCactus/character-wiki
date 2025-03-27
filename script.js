@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.log([character.name[0]?.[1],character.name[1]?.[1],character.name[2]?.[1]].filter(Boolean).join('-'))
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
             console.log(character.profession)
-            if (character.country) {
+            if (character.pob) {
                 document.getElementById(`character-pob`).innerHTML =
                     `<b>Place of Birth: </b>${character.pob.reverse().filter(Boolean).join(', ')}`
                 console.log([character.city,character.region,character.country].filter(Boolean).join(' '))
