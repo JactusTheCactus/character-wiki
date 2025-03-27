@@ -56,7 +56,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             const fullName = character.name.filter(Boolean).join(' ');
             document.title = `${getFullName(character,'personal')}`;
             document.getElementById(`character-name`).innerHTML = `${getFullName(character,'personal')}<hr>`;
-            ifKeyExists('pronunciation', character.pronunciation,'&nbsp;<sub><i>Pronunciation</i></sub><br>');
+            document.getElementById(`character-pronunciation`).innerHTML = `${[character.name[0][1],character.name[1][1],character.name[2][1]].filter(Boolean).join('-')}`
+            '&nbsp;<sub><i>Pronunciation</i></sub><br>';
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
             if (character.country) {
                 document.getElementById(`character-pob`).innerHTML =
