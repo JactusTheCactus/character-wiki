@@ -4,7 +4,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     let characters = await response.json();
     characters = characters.filter(character => character.name[0] || character.name[1] || character.name[2]);
     // Sort characters by last name
-    characters.sort((a, b) => a.name[-1].localeCompare(b.name[-1]));
+    characters.sort((a, b) => {
+        const lastA = a.name[a.name.length - 1] || ""; // Get last name, fallback to empty string
+        const lastB = b.name[b.name.length - 1] || "";
+        return lastA.localeCompare(lastB);
+    });
     // Get the current page filename
     const page = window.location.pathname.split("/").pop();
     if (page === "index.html" || page === "") {
