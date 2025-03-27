@@ -37,9 +37,11 @@
                 "[vuh-DOO-vah]"
             ]
         ],
-        "country": "România",
-        "region": "Județul Constanța",
-        "city": "Constanța",
+        "pob": [
+            "România",
+            "Județul Constanța",
+            "Constanța"
+        ],
         "sex": "Female",
         "species": [
             "Huldra"
@@ -62,9 +64,11 @@
                 "[vla-KOO]"
             ]
         ],
-        "country": "România",
-        "region": "",
-        "city": "",
+        "country": [
+            "România",
+            "",
+            ""
+        ],
         "sex": "Female",
         "species": [
             "Changeling",
@@ -88,9 +92,11 @@
                 "[ROTE-shild]"
             ]
         ],
-        "country": "USA",
-        "region": "Pennsylvania",
-        "city": "Philadelphia",
+        "pob": [
+            "USA",
+            "Pennsylvania",
+            "Philadelphia"
+        ],
         "sex": "Female",
         "species": [
             "Predator",
@@ -111,11 +117,17 @@
             [
                 "",
                 ""
+            ],
+            [
+                "",
+                ""
             ]
         ],
-        "country": "",
-        "region": "",
-        "city": "",
+        "pob": [
+            "",
+            "",
+            ""
+        ]
         "sex": "",
         "species": [
             ""
