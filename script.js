@@ -54,14 +54,17 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
             // Populate character details
             const fullName = character.name.filter(Boolean).join(' ');
-            document.title = `${getFullName(character,'personal')}`;
+            document.title = getFullName(character,'personal');
+            console.log(getFullName(character,'personal'))
             document.getElementById(`character-name`).innerHTML = `${getFullName(character,'personal')}<hr>`;
-            document.getElementById(`character-pronunciation`).innerHTML = `${[character.name[0]?.[1],character.name[1]?.[1],character.name[2]?.[1]].filter(Boolean).join('-')}`
-            '&nbsp;<sub><i>Pronunciation</i></sub><br>';
+            document.getElementById(`character-pronunciation`).innerHTML = `&nbsp;<sub><i>Pronunciation</i></sub><br>${[character.name[0]?.[1],character.name[1]?.[1],character.name[2]?.[1]].filter(Boolean).join('-')}`;
+            console.log([character.name[0]?.[1],character.name[1]?.[1],character.name[2]?.[1]].filter(Boolean).join('-'))
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
+            console.log(character.profession)
             if (character.country) {
                 document.getElementById(`character-pob`).innerHTML =
                     `<b>Place of Birth: </b>${[character.city,character.region,character.country].filter(Boolean).join(' ')}`
+                console.log([character.city,character.region,character.country].filter(Boolean).join(' '))
             }
             if (character.languages) {
                 let langList = `<b>Spoken Languages:</b> <i>`;
@@ -76,13 +79,17 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
                 );
                 document.getElementById(`character-languages`).innerHTML = langList
+                console.log(langList)
             }
             ifKeyExists('sex', character.sex, '<b>Sex: </b>');
+            console.log(character.sex)
             if (character.species && character.species[0]) {
                 document.getElementById(`character-species`).innerHTML =
                     `<b>Species: </b>${character.species[0]}${character.species[1] ? ` (${character.species[1]})` : ''}`;
+                console.log(`${character.species[0]}${character.species[1] ? ` (${character.species[1]})` : ''}`)
             }
             ifKeyExists('description', character.description, '<hr>');
+            console.log(character.description)
         } else {
             document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
         }
