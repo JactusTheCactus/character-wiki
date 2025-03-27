@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
                 );
                 document.getElementById(`character-languages`).innerHTML = langList
-                console.log(langList)
+                console.log(langList.replace('<b>Spoken Languages:</b> <i>','').replace('</i>',''))
             }
             ifKeyExists('sex', character.sex, '<b>Sex: </b>');
             console.log(character.sex)
