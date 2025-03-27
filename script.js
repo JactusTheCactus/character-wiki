@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         (character.name[2] && character.name[2][0])
     );
     console.log('Unsorted')
-    character.forEach((character) => console.log(`Index: ${index}; Name: ${getFullName(character,'official')}`)
+    character.forEach((character) => console.log(`Index: ${index}; Name: ${getFullName(character,'official')}`))
     // Sort characters by last name
     characters.sort((a, b) => {
         const lastA = a.name[a.name.length - 1][0] || ""; // Get last name, fallback to empty string
