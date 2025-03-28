@@ -451,30 +451,26 @@
     {
         "name": [
             [
-                "",
-                ""
+                "Sadie",
+                "[SAY-dee]"
             ],
             [
-                "",
-                ""
-            ],
-            [
-                "",
-                ""
+                "Sharpe",
+                "[SHARP]"
             ]
         ],
         "pob": [
-            "",
-            "",
-            ""
+            "London",
+            "Greater London",
+            "England"
         ],
-        "sex": "",
+        "sex": "Female",
         "species": [
-            ""
+            "Human"
         ],
-        "profession": "",
+        "profession": "SHARP",
         "languages": [
-            ""
+            "English"
         ],
         "description": ""
     },
