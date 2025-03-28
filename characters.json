@@ -423,32 +423,30 @@
     {
         "name": [
             [
-                "",
-                ""
+                "Mischa",
+                "[MEE-sha]"
             ],
             [
-                "",
-                ""
-            ],
-            [
-                "",
-                ""
+                "Jäger",
+                "[YEH-ger]"
             ]
         ],
         "pob": [
-            "",
-            "",
-            ""
+            "Germany",
+            "Lower Bavaria",
+            "Passau"
         ],
-        "sex": "",
+        "sex": "Male",
         "species": [
-            ""
+            "Human"
         ],
         "profession": "",
         "languages": [
-            ""
+            "German",
+            "Czech",
+            "English"
         ],
-        "description": ""
+        "description": "<p>Mischa's appearance is very similar to \"Aryan Perfection,\" which he despises being referenced, for obvious reasons, given that he is German. Mischa has a very sarcastic, deadpan sense of humour. he can say the funniest things, without so much as a smirk. Mischa's humour more than makes up for his unextraordinary appearance.</p>"
     },
     {
         "name": [
