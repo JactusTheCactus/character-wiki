@@ -368,32 +368,30 @@
     {
         "name": [
             [
-                "",
-                ""
+                "Melania",
+                "[muh-LAH-nee-uh]"
             ],
             [
-                "",
-                ""
-            ],
-            [
-                "",
-                ""
+                "Dunn",
+                "[DUN]"
             ]
         ],
         "pob": [
-            "",
+            "Germany",
             "",
             ""
         ],
-        "sex": "",
+        "sex": "Female",
         "species": [
-            ""
+            "Elemental",
+            "Shadow"
         ],
         "profession": "",
         "languages": [
-            ""
+            "German",
+            "English"
         ],
-        "description": ""
+        "description": "<h2>Abilities</h2><ul><li>Killing Touch</li><li>Longevity</li><li>Umbral Magic</li><li>Shapeshifting</li><li>Invisibility</li></ul>"
     },
     {
         "name": [
