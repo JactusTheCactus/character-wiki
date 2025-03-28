@@ -396,32 +396,29 @@
     {
         "name": [
             [
-                "",
-                ""
+                "Mia",
+                "[MEE-ah]"
             ],
             [
-                "",
-                ""
-            ],
-            [
-                "",
-                ""
+                "Falk",
+                "[FALK]"
             ]
         ],
         "pob": [
-            "",
+            "Sweden",
             "",
             ""
         ],
-        "sex": "",
+        "sex": "Female",
         "species": [
-            ""
+            "Human"
         ],
         "profession": "",
         "languages": [
-            ""
+            "Swedish",
+            "English"
         ],
-        "description": ""
+        "description": "<p>Mia is a small, cute, petite, brunette girl. She is Vivian's younger sister</p>"
     },
     {
         "name": [
