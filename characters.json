@@ -282,32 +282,29 @@
     {
         "name": [
             [
-                "",
-                ""
+                "Luca",
+                "[LOO-kah]"
             ],
             [
-                "",
-                ""
-            ],
-            [
-                "",
-                ""
+                "Matei",
+                "[mah-TAY]"
             ]
         ],
         "pob": [
-            "",
-            "",
-            ""
+            "Romania",
+            "Constanța County",
+            "Constanța"
         ],
-        "sex": "",
+        "sex": "Male",
         "species": [
-            ""
+            "Vampire"
         ],
         "profession": "",
         "languages": [
-            ""
+            "Romanian",
+            "English"
         ],
-        "description": ""
+        "description": "<p>Luca is from Constanța, Romania. He is also a 300-year-old vampire, but tends to keep that fact well-hidden. Luca has a black rose tattoo on his forearm, with a name written in Romanian Cyrillic, reading \"Дарйа Матєй\" (Daria Matei).</p>"
     },
     {
         "name": [
