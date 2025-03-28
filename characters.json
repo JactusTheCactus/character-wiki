@@ -254,30 +254,28 @@
     {
         "name": [
             [
-                "",
-                ""
+                "Lou",
+                "[LOO]"
             ],
             [
-                "",
-                ""
-            ],
-            [
-                "",
-                ""
+                "LeClair",
+                "[luh-KLAYR]"
             ]
         ],
         "pob": [
-            "",
-            "",
+            "Canada",
+            "Quebec",
             ""
         ],
-        "sex": "",
+        "sex": "Female",
         "species": [
-            ""
+            "Human"
         ],
         "profession": "",
         "languages": [
-            ""
+            "French",
+            "English",
+            "Spanish"
         ],
         "description": ""
     },
