@@ -1,3 +1,4 @@
 # Features To Add
 - filter to `include`, `exclude`, or `exclusively` show characters with certain tags
   - syntax: `?index=${filter}:${tag},${tag},${etc.};`
+  - current status: `?index=${tag}`
