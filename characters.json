@@ -65,21 +65,17 @@
             ]
         ],
         "pob": [
-            "România",
-            "",
-            ""
+            "România"
         ],
         "sex": "Female",
         "species": [
             "Changeling",
             "Golden Eagle"
         ],
-        "profession": "",
         "languages": [
             "Romanian",
             "English"
-        ],
-        "description": ""
+        ]
     },
     {
         "name": [
@@ -132,7 +128,6 @@
         "species": [
             "Selkie"
         ],
-        "profession": "",
         "languages": [
             "Irish",
             "English"
@@ -160,7 +155,6 @@
             "Predator",
             "Changeling"
         ],
-        "profession": "",
         "languages": [
             "Spanish",
             "English",
@@ -189,7 +183,6 @@
             "Predator",
             "Apex"
         ],
-        "profession": "",
         "languages": [
             "Welsh",
             "English"
@@ -221,8 +214,7 @@
             "West Frisian",
             "Dutch",
             "English"
-        ],
-        "description": ""
+        ]
     },
     {
         "name": [
@@ -236,15 +228,12 @@
             ]
         ],
         "pob": [
-            "Netherlands",
-            "",
-            ""
+            "Netherlands"
         ],
         "sex": "Male",
         "species": [
             "Reaper"
         ],
-        "profession": "",
         "languages": [
             "Dutch",
             "English"
@@ -264,20 +253,17 @@
         ],
         "pob": [
             "Canada",
-            "Quebec",
-            ""
+            "Quebec"
         ],
         "sex": "Female",
         "species": [
             "Human"
         ],
-        "profession": "",
         "languages": [
             "French",
             "English",
             "Spanish"
-        ],
-        "description": ""
+        ]
     },
     {
         "name": [
@@ -299,7 +285,6 @@
         "species": [
             "Vampire"
         ],
-        "profession": "",
         "languages": [
             "Romanian",
             "English"
@@ -322,15 +307,12 @@
             ]
         ],
         "pob": [
-            "Roman Republic",
-            "",
-            ""
+            "Roman Republic"
         ],
         "sex": "Female",
         "species": [
             "Dragon"
         ],
-        "profession": "",
         "languages": [
             "Vulgar Latin",
             "Old English",
@@ -358,7 +340,6 @@
         "species": [
             "Demon"
         ],
-        "profession": "",
         "languages": [
             "Latin",
             "English"
@@ -377,16 +358,13 @@
             ]
         ],
         "pob": [
-            "Germany",
-            "",
-            ""
+            "Germany"
         ],
         "sex": "Female",
         "species": [
             "Elemental",
             "Shadow"
         ],
-        "profession": "",
         "languages": [
             "German",
             "English"
@@ -405,15 +383,12 @@
             ]
         ],
         "pob": [
-            "Sweden",
-            "",
-            ""
+            "Sweden"
         ],
         "sex": "Female",
         "species": [
             "Human"
         ],
-        "profession": "",
         "languages": [
             "Swedish",
             "English"
@@ -440,7 +415,6 @@
         "species": [
             "Human"
         ],
-        "profession": "",
         "languages": [
             "German",
             "Czech",
@@ -471,8 +445,7 @@
         "profession": "SHARP",
         "languages": [
             "English"
-        ],
-        "description": ""
+        ]
     },
     {
         "name": [
@@ -494,7 +467,6 @@
         "species": [
             "Human"
         ],
-        "profession": "",
         "languages": [
             "French",
             "English"
@@ -512,19 +484,12 @@
                 "[BRIGZ]"
             ]
         ],
-        "pob": [
-            "",
-            "",
-            ""
-        ],
+        "pob": [],
         "sex": "Female",
         "species": [
             "Predator"
         ],
-        "profession": "",
-        "languages": [
-            ""
-        ],
+        "languages": [],
         "description": "<h2>Physical Traits and Species</h2><p>Sarah Briggs is a 28-year-old female Pred, standing at 6'2\" with a muscular yet curvy build. Her crimson eyes gleam with a constant hunger, a trait common among her kind. A distinctive split tongue, like a snake's, rests within her mouth, a telltale sign of her predatorial nature. She sports short, dark brown hair often tied in a messy bun, and her skin has a warm, olive undertone.</p><h3>Body and Outfit</h3><p>Sarah's body is a testament to her Pred heritage - powerful and agile despite her larger stature. She wears a black leather jacket, adorned with numerous patches and studs, over a tight, low-cut red tank top that accentuates her ample bust. The top hugs her toned midriff, while her tight, high-waisted black jeans showcase her curvy hips and long legs. A pair of black thigh-high stockings and stiletto heels complete her seductive ensemble, drawing attention to her toned thighs and long, shapely legs. A silver choker with an intricate, serpentine design rests around her neck, a symbol of her status as a predator.</p><h2>Personality and Behavior</h2><p>Sarah exudes an aura of confidence and dominance, her sharp gaze and predatory instincts always on the prowl for her next meal. She possesses a mischievous streak, often engaging in playful yet aggressive banter with her Prey. Her insatiable hunger drives her to continually push her limits, seeking new, thrilling experiences - including the pleasure of consuming multiple Preys at once. Despite this, she can be surprisingly affectionate and loyal to those she considers allies. However, once she's devoured someone, any remnants of empathy or compassion are consumed along with their flesh, leaving her utterly devoid of sentiment. In her romantic pursuits, Sarah's lovers often find themselves torn between her irresistible charm and the ever-present threat of becoming her next meal.</p>"
     },
     {
@@ -539,17 +504,14 @@
             ]
         ],
         "pob": [
-            "England",
-            "",
-            ""
+            "England"
         ],
         "sex": "Female",
         "species": [
             "Predator"
         ],
-        "profession": "",
         "languages": [
-            ""
+            "English"
         ],
         "description": "<p>Scarlet Sinclair, the B+ Pred Queen of 12th century England, stands at an impressive 6'2\" with a voluptuous, hourglass figure that turns heads wherever she goes. Her raven hair cascades down her back in loose, flowing waves, often adorned with delicate gold clips. Her crimson eyes, a dead giveaway of her Pred heritage, sparkle with mischief and allure. She has a smattering of freckles across her cheeks and nose, adding to her natural, girl-next-door charm.</p><p>Her royal attire consists of a form-fitting, emerald green bodice that showcases her ample bust, paired with a flowing, crimson skirt that swishes dramatically with each step. A regal, golden crown sits atop her head, complete with a large, central ruby that seems to pulse with an inner fire. Around her neck, a delicate, silver choker bears an engraved, heart-shaped pendant - a symbol of her vorarephile nature and eternal longing for her \"one true love.\"</p><p>Despite her royal status, Scarlet exudes a playful, flirtatious aura that belies her fearsome Pred abilities. Her laughter is music to the ears, and her quick wit often leaves courtiers and advisors alike in stitches. However, when threatened or provoked, her protective instincts kick into high gear, and she becomes a formidable force to be reckoned with.</p><p>Scarlet's nights are often spent carousing through the kingdom's taverns and inns, much to the chagrin of her advisors. Clad in her finest silks and velvets, she regales patrons with bawdy tales and lewd jokes, her crimson eyes glinting with mischief as she downs tankards of ale and flirts shamelessly with any man bold enough to catch her eye. The air around her seems to crackle with an undercurrent of danger, a silent warning to those who would dare cross her.</p><p>In private, her royal chambers are a testament to her vorarephile nature - the walls adorned with tapestries depicting scenes of sensual devouring, and her bedchamber reeking of the musky scent of recent prey. Despite her tyrannical rule, Scarlet's heart remains soft for those she deems worthy of her affection, her love and loyalty unshakeable.</p><h2>Attributes</h2><p>B+ Pred, Vorarephile Queen, Tyrannical Ruler, Flirtatious, Curvy, Crimson Eyes, Regal Bearing, Iron-Fisted Leadership, Sensual Nature</p><h3>Hobbies/Gimmicks</h3><p>Carousing in Taverns, Bawdy Jokes, Flirting, Devouring Accused, Searching for \"One True Love\"</p><h2>Additional Info</h2><p>Her voracious appetite extends beyond mere sustenance, as Scarlet craves the emotional connection and intimacy of a true partner to share her throne and her heart with.</p>"
     },
@@ -577,7 +539,6 @@
         "species": [
             "Changeling"
         ],
-        "profession": "",
         "languages": [
             "Russian",
             "Georgian",
@@ -597,15 +558,12 @@
             ]
         ],
         "pob": [
-            "Sweden",
-            "",
-            ""
+            "Sweden"
         ],
         "sex": "Female",
         "species": [
             "Predator"
         ],
-        "profession": "",
         "languages": [
             "Swedish",
             "English"
@@ -626,17 +584,15 @@
             ]
         ],
         "pob": [
-            "",
-            "",
-            ""
+            "Greece"
         ],
         "sex": "Female",
         "species": [
             "Predator"
         ],
-        "profession": "",
         "languages": [
-            ""
+            "Greek",
+            "English"
         ],
         "description": "<p>Kassie is a pred milf. Kassie is very open about being a pred, willing to eat anyone, except her cute neighbour, and anyone he is close to.</p>"
     },
@@ -652,11 +608,6 @@
                 "[AH-bay]",
                 "安倍"
             ]
-        ],
-        "pob": [
-            "",
-            "",
-            ""
         ],
         "sex": "Female",
         "species": [
@@ -683,16 +634,13 @@
             ]
         ],
         "pob": [
-            "Greece",
-            "",
-            ""
+            "Greece"
         ],
         "sex": "Female",
         "species": [
             "Mermaid",
             "Giantess"
         ],
-        "profession": "",
         "languages": [
             "Greek",
             "English"
@@ -713,15 +661,12 @@
             ]
         ],
         "pob": [
-            "Greece",
-            "",
-            ""
+            "Greece"
         ],
         "sex": "Female",
         "species": [
             "Predator"
         ],
-        "profession": "",
         "languages": [
             "Greek",
             "English"
@@ -742,15 +687,12 @@
             ]
         ],
         "pob": [
-            "Greece",
-            "",
-            ""
+            "Greece"
         ],
         "sex": "Female",
         "species": [
             "Harpy"
         ],
-        "profession": "",
         "languages": [
             "Greek",
             "English"
