@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             return middle ? `${last}, ${first} ${middle}` : `${last}, ${first}`;
         }
     }
+    const keys = await fetch("keyDefaults.json");
+    let keyDefaults = await keys.json();
 
     // Fetch character data
     const response = await fetch("characters.json");
@@ -52,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const urlParams = new URLSearchParams(window.location.search);
     // Ensure URL has ?keywords=
     if (!urlParams.has('keywords')) {
-        window.location.replace(`${window.location.pathname}?keywords=`);
+        window.location.replace(`${window.location.pathname}?keywords=default`);
     }
     const filterKeyword = urlParams.get('keywords');
 
@@ -76,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <sup>${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</sup>
                 </span>
                 ${getFullName(character, 'official')}
-                ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''}
+                ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<span style="color: red; font-style: italic; text-align: right; float: right;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</span><br>${'&nbsp'.repeat(4)}`) : ''}
             </a>`;
 
             if (filterKeywords.includes('all')) {
@@ -100,7 +102,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.log(getFullName(character, 'casual'))
             document.getElementById(`character-name`).innerHTML = `${getFullName(character, 'casual')}${character.name[0][2] ? affix([character.name[0]?.[2], character.name[1]?.[2], character.name[2]?.[2]].filter(Boolean).join(' '), '<br>&nbsp&nbsp<i><sup><sub>', '</sub></sup></i><hr>') : ''}`;
             if (character.keywords) {
-                document.getElementById('character-keywords').innerHTML = `<span style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ')}</span>`
+                document.getElementById('character-keywords').innerHTML = `Tags: <span style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</span>`
             }
             document.getElementById(`character-pronunciation`).innerHTML = `&nbsp;<sub><i>Pronunciation</i></sub><br>${[character.name[0]?.[1], character.name[1]?.[1], character.name[2]?.[1]].filter(Boolean).join('-')}`;
             console.log([character.name[0]?.[1], character.name[1]?.[1], character.name[2]?.[1]].filter(Boolean).join('-'))
@@ -142,7 +144,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 console.log(consoleFormat(character.description))
             }
             // Update the "Back" button to retain keywords
-            document.getElementById('back-button').setAttribute('href', `index.html?keywords=${filterKeywords.join(',') || ''}`);
+            document.getElementById('back-button').setAttribute('href', `index.html?keywords=${filterKeywords.join(',') || 'default'}`);
         } else {
             document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
         }
