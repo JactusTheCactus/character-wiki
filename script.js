@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const fullName = character.name.filter(Boolean).join(' ');
             document.title = getFullName(character,'personal');
             console.log(getFullName(character,'personal'))
-            document.getElementById(`character-name`).innerHTML = `${getFullName(character,'personal')}<br><sub>${[character.name[0]?.[2],character.name[1]?.[2],character.name[2]?.[2]].filter(Boolean).join(' ')}</sub><hr>`;
+            document.getElementById(`character-name`).innerHTML = `${getFullName(character,'personal')}<br><sup>${[character.name[0]?.[2],character.name[1]?.[2],character.name[2]?.[2]].filter(Boolean).join(' ')}</sup><hr>`;
             document.getElementById(`character-pronunciation`).innerHTML = `&nbsp;<sub><i>Pronunciation</i></sub><br>${[character.name[0]?.[1],character.name[1]?.[1],character.name[2]?.[1]].filter(Boolean).join('-')}`;
             console.log([character.name[0]?.[1],character.name[1]?.[1],character.name[2]?.[1]].filter(Boolean).join('-'))
             ifKeyExists('profession', character.profession,'<b>Profession: </b>');
