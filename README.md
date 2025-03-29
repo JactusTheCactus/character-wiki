@@ -6,5 +6,5 @@
 ```
 # Current Status
 ```js
-?index=${tag}
+?index=${tag},${tag},${etc.}
 ```
