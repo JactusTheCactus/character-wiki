@@ -44,6 +44,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
     // Get the current page filename
     const page = window.location.pathname.split("/").pop();
+    // Get the URL parameter (if any)
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterKeyword = urlParams.get('index');
+    // Filter out characters based on the filterKeyword
+
     if (page === "index.html" || page === "") {
         // If on index.html, populate the character list
         const list = document.getElementById("character-list");
@@ -54,7 +59,17 @@ document.addEventListener("DOMContentLoaded", async function () {
             li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800"><span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'><sup>${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</sup></span>${getFullName(character, 'official')
                 }${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''
                 }</a > `;
-            list.appendChild(li);
+            // Get the current URL (or any specific URL)
+            const url = new URL(window.location.href); // This works for the current page
+            // Get the value of the 'index' parameter from the query string
+            const filterString = url.searchParams.get('index');
+            // Split the string into an array of keywords
+            const filterKeywords = filterString ? filterString.split(',') : [];
+            if (!character.keywords) {
+                list.appendChild(li);
+            } else if (filterKeywords.some(keyword => character.keywords.includes(keyword))) {
+                list.appendChild(li);
+            }
         });
     } else if (page === "character.html") {
         // If on character.html, get the character index from the URL
@@ -70,6 +85,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.title = getFullName(character, 'casual');
             console.log(getFullName(character, 'casual'))
             document.getElementById(`character-name`).innerHTML = `${getFullName(character, 'casual')}${character.name[0][2] ? affix([character.name[0]?.[2], character.name[1]?.[2], character.name[2]?.[2]].filter(Boolean).join(' '), '<br>&nbsp&nbsp<i><sup><sub>', '</sub></sup></i><hr>') : ''}`;
+            if (character.keywords) {
+                document.getElementById('character-keywords').innerHTML = `<span style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ')}</span>`
+            }
             document.getElementById(`character-pronunciation`).innerHTML = `&nbsp;<sub><i>Pronunciation</i></sub><br>${[character.name[0]?.[1], character.name[1]?.[1], character.name[2]?.[1]].filter(Boolean).join('-')}`;
             console.log([character.name[0]?.[1], character.name[1]?.[1], character.name[2]?.[1]].filter(Boolean).join('-'))
             if (character.profession) {
