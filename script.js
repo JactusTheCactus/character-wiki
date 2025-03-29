@@ -50,6 +50,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Get the URL parameter (if any)
     const urlParams = new URLSearchParams(window.location.search);
+    // Ensure URL has ?keywords=
+    if (!urlParams.has('keywords')) {
+        window.location.replace(`${window.location.pathname}?keywords=`);
+    }
     const filterKeyword = urlParams.get('keywords');
 
     // Define filterKeywords here for both cases
