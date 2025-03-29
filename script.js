@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const filterKeyword = urlParams.get('index');
     // Filter out characters based on the filterKeyword
-
     if (page === "index.html" || page === "") {
         // If on index.html, populate the character list
         const list = document.getElementById("character-list");
@@ -82,9 +81,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // Validate index and fetch the character
         if (!isNaN(characterIndex) && characterIndex >= 0 && characterIndex < characters.length) {
             const character = characters[characterIndex];
-
             // Function to insert data only if it exists
-
             // Populate character details
             document.title = getFullName(character, 'casual');
             console.log(getFullName(character, 'casual'))
