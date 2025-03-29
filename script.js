@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!isNaN(characterIndex) && characterIndex >= 0 && characterIndex < characters.length) {
             const character = characters[characterIndex];
             // Function to insert data only if it exists
-
             // Populate character details
             document.title = getFullName(character, 'casual');
             console.log(getFullName(character, 'casual'))
