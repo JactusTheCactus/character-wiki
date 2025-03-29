@@ -65,9 +65,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             const filterString = url.searchParams.get('index');
             // Split the string into an array of keywords
             const filterKeywords = filterString ? filterString.split(',') : [];
-            if (!character.keywords) {
+            if (filterKeywords.includes('all')) {
                 list.appendChild(li);
-            } else if (filterKeywords.some(keyword => character.keywords.includes(keyword))) {
+            }
+            else if (!character.keywords) {
+                list.appendChild(li);
+            }
+            else if (filterKeywords.some(keyword => character.keywords.includes(keyword))) {
                 list.appendChild(li);
             }
         });
