@@ -2,5 +2,5 @@
 - filter to `include`, `exclude`, or `exclusively` show characters with certain tags
   - syntax:
 ```
-${URL}?index=${include/exclude/exclusive}:${tag1},${tag2},${etc.};${include/exclude/exclusive}:${tag1},${tag2},${etc.}
+${URL}?index=${filter}:${tag},${tag},${etc.};${filter}:${tag},${tag},${etc.}
 ```
