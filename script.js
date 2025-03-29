@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             .replace(/<h2>/g, '<<NEWLINE>>')
             .replace(/<p>/g, '\n')
             .replace(/\n\n/g, '\n')
-            .replace(/<<NEWLINE>>/g, '\n')
+            .replace(/<<NEWLINE>>/g, '\n');
     }
     function affix(input, prefix = '', suffix = '') {
         return input ? `${prefix}${input}${suffix}` : '';
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             return middle ? `${last}, ${first} ${middle}` : `${last}, ${first}`;
         }
     }
+
     // Fetch character data
     const response = await fetch("characters.json");
     let characters = await response.json();
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         (character.name[1] && character.name[1][0]) ||
         (character.name[2] && character.name[2][0])
     );
+
     // Sort characters by last name
     characters.sort((a, b) => {
         const lastA = a.name[a.name.length - 1][0] || ""; // Get last name, fallback to first name, then empty string
@@ -42,36 +44,40 @@ document.addEventListener("DOMContentLoaded", async function () {
             return firstA.localeCompare(firstB);
         }
     });
+
     // Get the current page filename
     const page = window.location.pathname.split("/").pop();
+
     // Get the URL parameter (if any)
     const urlParams = new URLSearchParams(window.location.search);
-    const filterKeyword = urlParams.get('index');
-    // Filter out characters based on the filterKeyword
+    const filterKeyword = urlParams.get('keywords');
+
+    // Define filterKeywords here for both cases
+    const filterKeywords = filterKeyword ? filterKeyword.split(',') : [];
 
     if (page === "index.html" || page === "") {
-        // If on index.html, populate the character list
         const list = document.getElementById("character-list");
+
         characters.forEach((character, index) => {
             console.log(getFullName(character, 'official'));
+
             const li = document.createElement("li");
             li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
-            li.innerHTML = `<a href="character.html?index=${index}" class="block text-lg text-gray-800"><span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'><sup>${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</sup></span>${getFullName(character, 'official')
-                }${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''
-                }</a > `;
-            // Get the current URL (or any specific URL)
-            const url = new URL(window.location.href); // This works for the current page
-            // Get the value of the 'index' parameter from the query string
-            const filterString = url.searchParams.get('index');
-            // Split the string into an array of keywords
-            const filterKeywords = filterString ? filterString.split(',') : [];
+
+            // Preserve keywords in the URL
+            const keywordParam = filterKeywords.length ? `&keywords=${filterKeywords.join(',')}` : '';
+
+            li.innerHTML = `<a href="character.html?index=${index}${keywordParam}" class="block text-lg text-gray-800">
+                <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
+                    <sup>${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</sup>
+                </span>
+                ${getFullName(character, 'official')}
+                ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''}
+            </a>`;
+
             if (filterKeywords.includes('all')) {
                 list.appendChild(li);
-            }
-            else if (!character.keywords) {
-                list.appendChild(li);
-            }
-            else if (filterKeywords.some(keyword => character.keywords.includes(keyword))) {
+            } else if (!character.keywords || filterKeywords.some(keyword => character.keywords.includes(keyword))) {
                 list.appendChild(li);
             }
         });
@@ -79,10 +85,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         // If on character.html, get the character index from the URL
         const urlParams = new URLSearchParams(window.location.search);
         const characterIndex = parseInt(urlParams.get("index"), 10);
+        // Get keywords separately
+        const filterKeywords = urlParams.get("keywords") ? urlParams.get("keywords").split(',') : [];
         // Validate index and fetch the character
         if (!isNaN(characterIndex) && characterIndex >= 0 && characterIndex < characters.length) {
             const character = characters[characterIndex];
-
             // Function to insert data only if it exists
 
             // Populate character details
@@ -131,6 +138,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 document.getElementById('character-description').innerHTML = affix(character.description, '<hr>')
                 console.log(consoleFormat(character.description))
             }
+            // Update the "Back" button to retain keywords
+            document.getElementById('back-button').setAttribute('href', `index.html?keywords=${filterKeywords.join(',') || ''}`);
         } else {
             document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
         }
