@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", async function () {
     function consoleFormat(input) {
         return input
-            .replace(/<\//g, '<')
-            .replace(/<h2>/g, '<<NEWLINE>>')
-            .replace(/<p>/g, '\n')
-            .replace(/\n\n/g, '\n')
-            .replace(/<<NEWLINE>>/g, '\n');
-    }
+            .replace(/<\/?[^>]+>/g, match => {
+                if (/<h[1-6]>/.test(match)) return '<<NEWLINE>>';
+                if (match === "<p>" || match === "<li>") return '\n'.repeat(1);
+                return ''; // Remove all other tags
+            })
+            .replace('&nbsp;','&nbsp')
+            .replace('&nbsp','  ')
+            .replace(/\n\n\n/g, '\n'.repeat(2))
+            .replace(/<<NEWLINE>>/g, '\n'.repeat(3))
+    }    
     function affix(input, prefix = '', suffix = '') {
         return input ? `${prefix}${input}${suffix}` : '';
     }
@@ -73,12 +77,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             // Preserve keywords in the URL
             const keywordParam = filterKeywords.length ? `&keywords=${filterKeywords.join(',')}` : '';
 
-            li.innerHTML = `<a href="character.html?index=${index}${keywordParam}" class="block text-lg text-gray-800">
+            li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${index}${keywordParam}" class="block text-lg text-gray-800">
+                ${character.keywords ? `<p style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</p>` : ''}
                 <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
-                    <sup>${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</sup>
-                </span>
+                    ${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</span>
                 ${getFullName(character, 'official')}
-                ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<span style="color: red; font-style: italic; text-align: right; float: right;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</span><br>${'&nbsp'.repeat(4)}`) : ''}
+                ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''}
             </a>`;
 
             if (filterKeywords.includes('all')) {
