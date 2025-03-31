@@ -63,11 +63,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Get the URL parameter (if any)
     const urlParams = new URLSearchParams(window.location.search);
     // Ensure URL has ?keywords=
-    console.log(window.location.search)
     if (
         !window.location.search.includes('=') ||
-        window.location.search.endsWith("keywords=") ||
-        window.location.search.includes('keywords=&')
+        window.location.search.endsWith("=") ||
+        window.location.search.includes('=&')
     ) {
         window.location.replace(`${window.location.pathname}?keywords=default`);
     }
@@ -86,31 +85,30 @@ document.addEventListener("DOMContentLoaded", async function () {
             section.className = "letter-section mt-8";
             const h2 = document.createElement("h2");
             h2.className = "text-xl font-bold";
-            h2.textContent = `#${letter}`;
+            h2.innerHTML = `${letter}`;
             const ul = document.createElement("ul");
             groupedCharacters[letter].forEach((character, index) => {
-                console.log(getFullName(character, 'official'));
+				console.log(character)
                 const li = document.createElement("li");
                 li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
                 // Preserve keywords in the URL
                 const keywordParam = filterKeywords.length ? `&keywords=${filterKeywords.join(',')}` : '';
-                li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${index}${keywordParam}" class="block text-lg text-gray-800">
+                li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${characters.indexOf(character)}${keywordParam}" class="block text-lg text-gray-800">
                     ${character.keywords ? `<p style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</p>` : ''}
                     <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
                         ${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</span>
                     ${getFullName(character, 'official')}
                     ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''}
                 </a>`;
-                function appendCharacter() {
-                    if (!letterList.includes(letter)) {
-                        letterList.push(letter)
-                    }
-                    if (letterList.includes(letter)) {
-                        section.appendChild(h2);
-                    }
-                    ul.appendChild(li);
-                    console.log(letterList)
-                };
+				function appendCharacter() {
+					if (!letterList.includes(letter)) {
+						letterList.push(letter)
+					}
+					if (letterList.includes(letter)) {
+						section.appendChild(h2);
+					}
+					ul.appendChild(li);
+				};
                 if (filterKeywords.includes('all')) {
                     appendCharacter()
                 } else if (!character.keywords || filterKeywords.some(keyword => character.keywords.includes(keyword))) {
@@ -144,21 +142,17 @@ document.addEventListener("DOMContentLoaded", async function () {
             // Function to insert data only if it exists
             // Populate character details
             document.title = getFullName(character, 'casual');
-            console.log(getFullName(character, 'casual'))
             document.getElementById(`character-name`).innerHTML = `${getFullName(character, 'casual')}${character.name[0][2] ? affix([character.name[0]?.[2], character.name[1]?.[2], character.name[2]?.[2]].filter(Boolean).join(' '), '<br>&nbsp&nbsp<i><sup><sub>', '</sub></sup></i><hr>') : ''}`;
             if (character.keywords) {
                 document.getElementById('character-keywords').innerHTML = `Tags: <span style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</span>`
             }
             document.getElementById(`character-pronunciation`).innerHTML = `&nbsp;<sub><i>Pronunciation</i></sub><br>${[character.name[0]?.[1], character.name[1]?.[1], character.name[2]?.[1]].filter(Boolean).join('-')}`;
-            console.log([character.name[0]?.[1], character.name[1]?.[1], character.name[2]?.[1]].filter(Boolean).join('-'))
             if (character.profession) {
                 document.getElementById('character-profession').innerHTML = affix(character.profession, '<b>Profession: </b>');
-                console.log(character.profession)
             }
             if (character.pob) {
                 document.getElementById(`character-pob`).innerHTML =
                     `<b>Place of Birth: </b>${character.pob.reverse().filter(Boolean).join(', ')}`
-                console.log(character.pob.reverse().filter(Boolean).join(', '))
             }
             if (character.languages) {
                 let langList = `<b>Spoken Languages:</b> <i>`;
@@ -173,11 +167,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
                 );
                 document.getElementById(`character-languages`).innerHTML = langList
-                console.log(langList.replace('<b>Spoken Languages:</b> <i>', '').replace('</i>', ''))
             }
             if (character.sex) {
-                document.getElementById('character-sex').innerHTML = affix(character.sex, '<b>Sex: </b>'); console.log(character.sex)
-            } if (character.species) { document.getElementById(`character-species`).innerHTML = `<b>Species: </b>${character.species[0]}${character.species[1] ? `(${character.species[1]})` : ''}`; console.log(`${character.species[0]}${character.species[1] ? `(${character.species[1]})` : ''}`) } if (character.description) { document.getElementById('character-description').innerHTML = affix(character.description, '<hr>'); console.log(consoleFormat(character.description)) }
+                document.getElementById('character-sex').innerHTML = affix(character.sex, '<b>Sex: </b>');
+            } if (character.species) { document.getElementById(`character-species`).innerHTML = `<b>Species: </b>${character.species[0]}${character.species[1] ? `(${character.species[1]})` : ''}`} if (character.description) { document.getElementById('character-description').innerHTML = affix(character.description, '<hr>')}
             // Update the "Back" button to retain keywords
             document.getElementById('back-button').setAttribute('href', `index.html?keywords=${filterKeywords.join(',') || 'default'}`);
         } else { document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`; }
