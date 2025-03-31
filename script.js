@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                 if (match === "<p>" || match === "<li>") return '\n'.repeat(1);
                 return ''; // Remove all other tags
             })
-            .replace('&nbsp;','&nbsp')
-            .replace('&nbsp','  ')
+            .replace('&nbsp;', '&nbsp')
+            .replace('&nbsp', '  ')
             .replace(/\n\n\n/g, '\n'.repeat(2))
             .replace(/<<NEWLINE>>/g, '\n'.repeat(3))
-    }    
+    }
     function affix(input, prefix = '', suffix = '') {
         return input ? `${prefix}${input}${suffix}` : '';
     }
@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     const keys = await fetch("keyDefaults.json");
     let keyDefaults = await keys.json();
-
     // Fetch character data
     const response = await fetch("characters.json");
     let characters = await response.json();
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         (character.name[1] && character.name[1][0]) ||
         (character.name[2] && character.name[2][0])
     );
-
     // Sort characters by last name
     characters.sort((a, b) => {
         const lastA = a.name[a.name.length - 1][0] || ""; // Get last name, fallback to first name, then empty string
@@ -50,45 +48,88 @@ document.addEventListener("DOMContentLoaded", async function () {
             return firstA.localeCompare(firstB);
         }
     });
-
+    // Group characters by the first letter of their last name
+    const groupedCharacters = characters.reduce((acc, character) => {
+        const lastName = character.name[character.name.length - 1][0] || "";
+        const firstLetter = lastName.charAt(0).toUpperCase();
+        if (!acc[firstLetter]) {
+            acc[firstLetter] = [];
+        }
+        acc[firstLetter].push(character);
+        return acc;
+    }, {});
     // Get the current page filename
     const page = window.location.pathname.split("/").pop();
-
     // Get the URL parameter (if any)
     const urlParams = new URLSearchParams(window.location.search);
     // Ensure URL has ?keywords=
-    if (!urlParams.has('keywords')) {
+    console.log(window.location.search)
+    if (
+        !window.location.search.includes('=') ||
+        window.location.search.endsWith("keywords=") ||
+        window.location.search.includes('keywords=&')
+    ) {
         window.location.replace(`${window.location.pathname}?keywords=default`);
     }
     const filterKeyword = urlParams.get('keywords');
-
     // Define filterKeywords here for both cases
     const filterKeywords = filterKeyword ? filterKeyword.split(',') : [];
-
     if (page === "index.html" || page === "") {
+        var letterList = []
         const list = document.getElementById("character-list");
-
-        characters.forEach((character, index) => {
-            console.log(getFullName(character, 'official'));
-
-            const li = document.createElement("li");
-            li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
-
-            // Preserve keywords in the URL
-            const keywordParam = filterKeywords.length ? `&keywords=${filterKeywords.join(',')}` : '';
-
-            li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${index}${keywordParam}" class="block text-lg text-gray-800">
-                ${character.keywords ? `<p style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</p>` : ''}
-                <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
-                    ${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</span>
-                ${getFullName(character, 'official')}
-                ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''}
-            </a>`;
-
-            if (filterKeywords.includes('all')) {
-                list.appendChild(li);
-            } else if (!character.keywords || filterKeywords.some(keyword => character.keywords.includes(keyword))) {
-                list.appendChild(li);
+        // Generate Alphabetical Shortcuts
+        const alphabeticalShortcuts = document.getElementById("alphabetical-shortcuts");
+        // Add character list sections grouped by letter
+        Object.keys(groupedCharacters).forEach(letter => {
+            const section = document.createElement("section");
+            section.id = `letter-${letter}`;
+            section.className = "letter-section mt-8";
+            const h2 = document.createElement("h2");
+            h2.className = "text-xl font-bold";
+            h2.textContent = `#${letter}`;
+            const ul = document.createElement("ul");
+            groupedCharacters[letter].forEach((character, index) => {
+                console.log(getFullName(character, 'official'));
+                const li = document.createElement("li");
+                li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
+                // Preserve keywords in the URL
+                const keywordParam = filterKeywords.length ? `&keywords=${filterKeywords.join(',')}` : '';
+                li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${index}${keywordParam}" class="block text-lg text-gray-800">
+                    ${character.keywords ? `<p style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</p>` : ''}
+                    <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
+                        ${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</span>
+                    ${getFullName(character, 'official')}
+                    ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''}
+                </a>`;
+                function appendCharacter() {
+                    if (!letterList.includes(letter)) {
+                        letterList.push(letter)
+                    }
+                    if (letterList.includes(letter)) {
+                        section.appendChild(h2);
+                    }
+                    ul.appendChild(li);
+                    console.log(letterList)
+                };
+                if (filterKeywords.includes('all')) {
+                    appendCharacter()
+                } else if (!character.keywords || filterKeywords.some(keyword => character.keywords.includes(keyword))) {
+                    appendCharacter()
+                }
+            });
+            section.appendChild(ul);
+            list.appendChild(section);
+        });
+        Object.keys(groupedCharacters).forEach(letter => {
+            const button = document.createElement("button");
+            button.textContent = letter;
+            button.className = "p-2 bg-gray-300 hover:bg-gray-400 rounded";
+            button.onclick = () => {
+                const section = document.getElementById(`letter-${letter}`);
+                section.scrollIntoView({ behavior: 'smooth' });
+            };
+            if (letterList.includes(letter)) {
+                alphabeticalShortcuts.appendChild(button);
             }
         });
     } else if (page === "character.html") {
@@ -135,22 +176,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                 console.log(langList.replace('<b>Spoken Languages:</b> <i>', '').replace('</i>', ''))
             }
             if (character.sex) {
-                document.getElementById('character-sex').innerHTML = affix(character.sex, '<b>Sex: </b>');
-                console.log(character.sex)
-            }
-            if (character.species) {
-                document.getElementById(`character-species`).innerHTML =
-                    `<b>Species: </b>${character.species[0]}${character.species[1] ? ` (${character.species[1]})` : ''}`;
-                console.log(`${character.species[0]}${character.species[1] ? ` (${character.species[1]})` : ''}`)
-            }
-            if (character.description) {
-                document.getElementById('character-description').innerHTML = affix(character.description, '<hr>')
-                console.log(consoleFormat(character.description))
-            }
+                document.getElementById('character-sex').innerHTML = affix(character.sex, '<b>Sex: </b>'); console.log(character.sex)
+            } if (character.species) { document.getElementById(`character-species`).innerHTML = `<b>Species: </b>${character.species[0]}${character.species[1] ? `(${character.species[1]})` : ''}`; console.log(`${character.species[0]}${character.species[1] ? `(${character.species[1]})` : ''}`) } if (character.description) { document.getElementById('character-description').innerHTML = affix(character.description, '<hr>'); console.log(consoleFormat(character.description)) }
             // Update the "Back" button to retain keywords
             document.getElementById('back-button').setAttribute('href', `index.html?keywords=${filterKeywords.join(',') || 'default'}`);
-        } else {
-            document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
-        }
+        } else { document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`; }
     }
 });

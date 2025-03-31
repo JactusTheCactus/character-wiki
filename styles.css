@@ -94,6 +94,10 @@
   :not(#character-list) li {
     margin-left: 5%;
   }
+  #character-list li {
+    margin-left: 0;
+    list-style: none;
+  }
   :-moz-focusring {
     outline: auto;
   }
@@ -102,9 +106,6 @@
   }
   summary {
     display: list-item;
-  }
-  #character-list {
-    list-style: none;
   }
   s, audio, iframe, embed, object {
     display: block;
