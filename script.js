@@ -62,17 +62,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     const page = window.location.pathname.split("/").pop();
     // Get the URL parameter (if any)
     const urlParams = new URLSearchParams(window.location.search);
-    // Ensure URL has ?keywords=
+    // Ensure URL has ?tags=
     if (
         !window.location.search.includes('=') ||
         window.location.search.endsWith("=") ||
         window.location.search.includes('=&')
     ) {
-        window.location.replace(`${window.location.pathname}?keywords=default`);
+        window.location.replace(`${window.location.pathname}?tags=default`);
     }
-    const filterKeyword = urlParams.get('keywords');
-    // Define filterKeywords here for both cases
-    const filterKeywords = filterKeyword ? filterKeyword.split(',') : [];
+    const filterTag = urlParams.get('tags');
+    // Define filterTags here for both cases
+    const filterTags = filterTag ? filterTag.split(',') : [];
     if (page === "index.html" || page === "") {
         var letterList = []
         const list = document.getElementById("character-list");
@@ -91,10 +91,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 				console.log(character)
                 const li = document.createElement("li");
                 li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
-                // Preserve keywords in the URL
-                const keywordParam = filterKeywords.length ? `&keywords=${filterKeywords.join(',')}` : '';
-                li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${characters.indexOf(character)}${keywordParam}" class="block text-lg text-gray-800">
-                    ${character.keywords ? `<p style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</p>` : ''}
+                // Preserve tags in the URL
+                const tagsParam = filterTags.length ? `&tags=${filterTags.join(',')}` : '';
+                li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${characters.indexOf(character)}${tagsParam}" class="block text-lg text-gray-800">
+                    ${character.tags ? `<p style="color: red; font-style: italic;">${character.tags.map(tags => `#${tags}`).join(', ').toUpperCase()}</p>` : ''}
                     <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
                         ${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</span>
                     ${getFullName(character, 'official')}
@@ -109,9 +109,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 					}
 					ul.appendChild(li);
 				};
-                if (filterKeywords.includes('all')) {
+                if (filterTags.includes('all')) {
                     appendCharacter()
-                } else if (!character.keywords || filterKeywords.some(keyword => character.keywords.includes(keyword))) {
+                } else if (!character.tags || filterTags.some(tags => character.tags.includes(tags))) {
                     appendCharacter()
                 }
             });
@@ -134,17 +134,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         // If on character.html, get the character index from the URL
         const urlParams = new URLSearchParams(window.location.search);
         const characterIndex = parseInt(urlParams.get("index"), 10);
-        // Get keywords separately
-        const filterKeywords = urlParams.get("keywords") ? urlParams.get("keywords").split(',') : [];
+        // Get tags separately
+        const filterTags = urlParams.get("tags") ? urlParams.get("tags").split(',') : [];
         // Validate index and fetch the character
         if (!isNaN(characterIndex) && characterIndex >= 0 && characterIndex < characters.length) {
             const character = characters[characterIndex];
-            // Function to insert data only if it exists
             // Populate character details
             document.title = getFullName(character, 'casual');
             document.getElementById(`character-name`).innerHTML = `${getFullName(character, 'casual')}${character.name[0][2] ? affix([character.name[0]?.[2], character.name[1]?.[2], character.name[2]?.[2]].filter(Boolean).join(' '), '<br>&nbsp&nbsp<i><sup><sub>', '</sub></sup></i><hr>') : ''}`;
-            if (character.keywords) {
-                document.getElementById('character-keywords').innerHTML = `Tags: <span style="color: red; font-style: italic;">${character.keywords.map(keyword => `#${keyword}`).join(', ').toUpperCase()}</span>`
+            if (character.tags) {
+                document.getElementById('character-tags').innerHTML = `Tags: <span style="color: red; font-style: italic;">${character.tags.map(tags => `#${tags}`).join(', ').toUpperCase()}</span>`
             }
             document.getElementById(`character-pronunciation`).innerHTML = `&nbsp;<sub><i>Pronunciation</i></sub><br>${[character.name[0]?.[1], character.name[1]?.[1], character.name[2]?.[1]].filter(Boolean).join('-')}`;
             if (character.profession) {
@@ -171,8 +170,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (character.sex) {
                 document.getElementById('character-sex').innerHTML = affix(character.sex, '<b>Sex: </b>');
             } if (character.species) { document.getElementById(`character-species`).innerHTML = `<b>Species: </b>${character.species[0]}${character.species[1] ? `(${character.species[1]})` : ''}`} if (character.description) { document.getElementById('character-description').innerHTML = affix(character.description, '<hr>')}
-            // Update the "Back" button to retain keywords
-            document.getElementById('back-button').setAttribute('href', `index.html?keywords=${filterKeywords.join(',') || 'default'}`);
+            // Update the "Back" button to retain tags
+            document.getElementById('back-button').setAttribute('href', `index.html?tags=${filterTags.join(',') || 'default'}`);
         } else { document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`; }
     }
 });
