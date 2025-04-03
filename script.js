@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 				// Preserve tags in the URL
 				const tagsParam = filterTags.length ? `&tags=${filterTags.join(',')}` : '';
 				li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${characters.indexOf(character)}${tagsParam}" class="block text-lg text-gray-800">
-                    ${character.tags ? `<p style="color: red; font-style: italic;">${character.tags.map(tags => `#${tags}`).join(', ').toUpperCase()}</p>` : ''}
+                    ${character.tags ? `<p style="color: red; font-style: italic;">${character.tags.filter( x => !filterTags.has(x)).map(tags => `#${tags}`).join(', ').toUpperCase()}</p>` : ''}
                     <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
                         ${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</span>
                     ${getFullName(character, 'official')}
