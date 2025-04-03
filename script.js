@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 				const tagsToShow = character.tags ? character.tags.filter(tag => !commonTags.includes(tag)) : [];
 				// Preserve tags in the URL
 				const tagsParam = filterTags.length ? `&tags=${filterTags.join(',')}` : '';
-				li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${characters.indexOf(character)}${tagsParam}" class="block text-lg text-gray-800">
+				li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${characters.indexOf(character)}${tagsParam}" class="block text-lg text-gray-800" target="_blank">
                     ${tagsToShow.length ? `<p style="color: red; font-style: italic;">${tagsToShow.map(tag => `#${tag}`).join(', ').toUpperCase()}</p>` : ''}
                     <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
                         ${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</span>
@@ -173,8 +173,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 				alphabeticalShortcuts.appendChild(button);
 			}
 		});
-		if (numCharacters === 0) {window.location.replace(`${window.location.pathname}?tags=default`);}
-		document.getElementById('details').innerHTML = `${numCharacters} ${!filterTags.some(tag => ['all','default'].includes(tag)) ? `${filterTags.join('/').toUpperCase()} ` : ''}Character${numCharacters > 1 ? 's' : ''}`;
+		if (numCharacters === 0) { window.location.replace(`${window.location.pathname}?tags=default`); }
+		document.getElementById('details').innerHTML = `${numCharacters} ${!filterTags.some(tag => ['all', 'default'].includes(tag)) ? `${filterTags.join('/').toUpperCase()} ` : ''}Character${numCharacters > 1 ? 's' : ''}`;
 	} else if (page === "character.html") {
 		// If on character.html, get the character index from the URL
 		const urlParams = new URLSearchParams(window.location.search);
@@ -213,17 +213,17 @@ document.addEventListener("DOMContentLoaded", async function () {
 			}
 			if (character.sex) {
 				document.getElementById('character-sex').innerHTML = affix(character.sex, '<b>Sex: </b>');
-			} 
-			if (character.species) { 
-				document.getElementById(`character-species`).innerHTML = `<b>Species: </b>${character.species[0]}${character.species[1] ? `(${character.species[1]})` : ''}`; 
-			} 
-			if (character.description) { 
-				document.getElementById('character-description').innerHTML = affix(character.description, '<hr>'); 
+			}
+			if (character.species) {
+				document.getElementById(`character-species`).innerHTML = `<b>Species: </b>${character.species[0]}${character.species[1] ? `(${character.species[1]})` : ''}`;
+			}
+			if (character.description) {
+				document.getElementById('character-description').innerHTML = affix(character.description, '<hr>');
 			}
 			// Update the "Back" button to retain tags
 			document.getElementById('back-button').setAttribute('href', `index.html?tags=${filterTags.join(',') || 'default'}`);
-		} else { 
-			document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`; 
+		} else {
+			document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
 		}
 	}
 });
