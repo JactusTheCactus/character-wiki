@@ -800,6 +800,36 @@
     {
         "name": [
             [
+                "Rory",
+                "[ROH-ree]"
+            ],
+            [
+                "Baasch",
+                "[BOSH]"
+            ]
+        ],
+        "pob": [
+            "Canada",
+            "British Columbia",
+            "Vancouver"
+        ],
+        "sex": "Male",
+        "species": [
+            "Human"
+        ],
+        "profession": "Mob Boss",
+        "languages": [
+            "English"
+        ],
+        "description": "Rory Baasch is the head of the Baasch Crime Family, the biggest criminal organization in 1940s Vancouver. Rory is a physically unassuming man.",
+        "tags": [
+            "human",
+            "sfw"
+        ]
+    },
+    {
+        "name": [
+            [
                 "",
                 "",
                 ""
