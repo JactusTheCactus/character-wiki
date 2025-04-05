@@ -1,4 +1,8 @@
 {
-    "nsfw": 0
-    
+    "nsfw": false,
+    "sfw": true,
+    "human": true,
+    "inhuman": true,
+    "moral": true,
+    "immoral": true
 }

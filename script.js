@@ -1,16 +1,4 @@
 document.addEventListener("DOMContentLoaded", async function () {
-	function consoleFormat(input) {
-		return input
-			.replace(/<\/?[^>]+>/g, match => {
-				if (/<h[1-6]>/.test(match)) return '<<NEWLINE>>';
-				if (match === "<p>" || match === "<li>") return '\n'.repeat(1);
-				return ''; // Remove all other tags
-			})
-			.replace('&nbsp;', '&nbsp')
-			.replace('&nbsp', '  ')
-			.replace(/\n\n\n/g, '\n'.repeat(2))
-			.replace(/<<NEWLINE>>/g, '\n'.repeat(3))
-	}
 	function affix(input, prefix = '', suffix = '') {
 		return input ? `${prefix}${input}${suffix}` : '';
 	}
@@ -54,41 +42,50 @@ document.addEventListener("DOMContentLoaded", async function () {
 	if (
 		!window.location.search.includes('=') ||
 		window.location.search.endsWith("=") ||
-		window.location.search.includes('=&')
+		window.location.search.includes('=&') ||
+		window.location.search.includes(',,')
 	) {
-		window.location.replace(`${window.location.pathname}?tags=default`);
+		window.location.replace(`${window.location.pathname}?include=default&exclude=default`);
 	}
-	const filterTag = urlParams.get('tags');
-	// Define filterTags here for both cases
-	const filterTags = filterTag ? filterTag.split(',') : [];
-	// Predefine our excludeDefaults for filtering tags
-	const excludeDefaults = {
-		nsfw: true,
-		sfw: false,
-		human: false,
-		inhuman: false
-	};
-
+	const includeTag = urlParams.get('include');
+	const excludeTag = urlParams.get('exclude');
+	const includeTags = includeTag ? includeTag.split(',') : [];
+	const excludeTags = excludeTag ? excludeTag.split(',') : [];
 	// Pre-process each character for filtering
 	characters.forEach(character => {
-		if (filterTags.includes('all')) { character.queued = true; }
-		else if (filterTags.includes('default')) {
-			character.queued = true;
-			// Mark character as blocked if any of its tags should be excluded
+		if (includeTags.includes('all')) {
+			character.queue = true;
+		} else if (includeTags.includes('default')) {
 			if (character.tags) {
 				character.tags.forEach(tag => {
-					if (excludeDefaults[tag]) {
+					if (keyDefaults[tag] === true) {
+						character.queue = true;
+					}
+				});
+			}
+		} else if (includeTags.includes('none')) {
+			character.block = true
+		} else if (includeTags.every(tag => character.tags.includes(tag))) {
+			character.queue = true;
+		}
+		if (excludeTags.includes('all')) {
+			character.block = true;
+		} else if (excludeTags.includes('default')) {
+			if (character.tags) {
+				character.tags.forEach(tag => {
+					if (keyDefaults[tag] === false) {
 						character.block = true;
 					}
 				});
 			}
-		} else if (filterTags.every(tag => character.tags.includes(tag))) {
-			character.queued = true;
+		} else if (excludeTags.includes('none')) {
+			character.queue = true
+		} else if (excludeTags.every(tag => character.tags.includes(tag))) {
+			character.block = true;
 		}
 	});
 	// Compute which characters will be displayed on index.html
-	const displayedCharacters = characters.filter(character => !character.block && character.queued);
-
+	const displayedCharacters = characters.filter(character => !character.block && character.queue);
 	// Compute commonTags: tags that every displayed character has
 	let commonTags = [];
 	if (displayedCharacters.length > 0) {
@@ -130,13 +127,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 			h2.className = "text-xl font-bold";
 			h2.innerHTML = `${letter}`;
 			const ul = document.createElement("ul");
-			groupedCharacters[letter].forEach((character, index) => {
+			groupedCharacters[letter].forEach((character) => {
 				const li = document.createElement("li");
 				li.className = "p-3 bg-gray-200 rounded hover:bg-gray-300 transition";
 				// Only display tags that are not common across all characters
 				const tagsToShow = character.tags ? character.tags.filter(tag => !commonTags.includes(tag)) : [];
 				// Preserve tags in the URL
-				const tagsParam = filterTags.length ? `&tags=${filterTags.join(',')}` : '';
+				const tagsParam = `&include=${includeTags.length ? `${includeTags.join(',')}` : 'default'}&exclude=${excludeTags.length ? `${excludeTags.join(',')}` : 'default'}`;
 				li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${characters.indexOf(character)}${tagsParam}" class="block text-lg text-gray-800" target="_blank">
                     ${tagsToShow.length ? `<p style="color: red; font-style: italic;">${tagsToShow.map(tag => `#${tag}`).join(', ').toUpperCase()}</p>` : ''}
                     <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
@@ -154,7 +151,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 					ul.appendChild(li);
 					numCharacters++;
 				}
-				if (!character.block && character.queued) {
+				if (!character.block && character.queue) {
 					appendCharacter();
 				}
 			});
@@ -173,14 +170,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 				alphabeticalShortcuts.appendChild(button);
 			}
 		});
-		if (numCharacters === 0) { window.location.replace(`${window.location.pathname}?tags=default`); }
-		document.getElementById('details').innerHTML = `${numCharacters} ${!filterTags.some(tag => ['all', 'default'].includes(tag)) ? `${filterTags.join('/').toUpperCase()} ` : ''}Character${numCharacters > 1 ? 's' : ''}`;
+		if (numCharacters === 0) { window.location.replace(`${window.location.pathname}?include=default&exclude=default`); }
+		document.getElementById('details').innerHTML = `${numCharacters} Character${numCharacters !== 1 ? 's' : ''}`;
 	} else if (page === "character.html") {
 		// If on character.html, get the character index from the URL
 		const urlParams = new URLSearchParams(window.location.search);
 		const characterIndex = parseInt(urlParams.get("index"), 10);
 		// Get tags separately
-		const filterTags = urlParams.get("tags") ? urlParams.get("tags").split(',') : [];
+		const includeTags = urlParams.get("include") ? urlParams.get("include").split(',') : [];
+		const excludeTags = urlParams.get("exclude") ? urlParams.get("exclude").split(',') : [];
 		// Validate index and fetch the character
 		if (!isNaN(characterIndex) && characterIndex >= 0 && characterIndex < characters.length) {
 			const character = characters[characterIndex];
@@ -221,7 +219,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 				document.getElementById('character-description').innerHTML = affix(character.description, '<hr>');
 			}
 			// Update the "Back" button to retain tags
-			document.getElementById('back-button').setAttribute('href', `index.html?tags=${filterTags.join(',') || 'default'}`);
+			document.getElementById('back-button').setAttribute('href', `index.html?include=${includeTags.join(',') || 'default'}&exclude=${excludeTags.join(',') || 'default'}`);
 		} else {
 			document.body.innerHTML = `<div class="text-center text-red-500 text-xl mt-10">Character not found.</div>`;
 		}
