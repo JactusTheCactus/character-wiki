@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", async function () {
+	function charAlign(character) {
+		var charAlignment = ''
+		if (character.alignment.morals && !character.alignment.empathy) {
+			charAlignment = character.alignment.morals
+		} else if (character.alignment.empathy && !character.alignment.morals) {
+			charAlignment = character.alignment.empathy
+		} else if (character.alignment.morals && character.alignment.empathy) {
+			charAlignment = `${character.alignment.morals} ${character.alignment.empathy}`
+		}
+		charAlignment = charAlignment.toUpperCase()
+		return charAlignment
+	}
 	function affix(input, prefix = '', suffix = '') {
 		return input ? `${prefix}${input}${suffix}` : '';
 	}
@@ -135,12 +147,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 				// Preserve tags in the URL
 				const tagsParam = `&include=${includeTags.length ? `${includeTags.join(',')}` : 'default'}&exclude=${excludeTags.length ? `${excludeTags.join(',')}` : 'default'}`;
 				li.innerHTML = `<a style="font-weight: bold;" href="character.html?index=${characters.indexOf(character)}${tagsParam}" class="block text-lg text-gray-800" target="_blank">
-                    ${tagsToShow.length ? `<p style="color: red; font-style: italic;">${tagsToShow.map(tag => `#${tag}`).join(', ').toUpperCase()}</p>` : ''}
-                    <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
-                        ${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</span>
+				<p>
+					<span style="color: blue;">
+						${charAlign(character)}
+					</span>
+					<span style="color: red; font-style: italic;">
+						${tagsToShow.map(tag => `#${tag}`).join(', ').toUpperCase()}
+					</span>
+				</p>
+                    <span style='color:${character.sex === 'Male' ? "blue" : "red"};'>
+                        ${character.sex === 'Male' ? "♂" : "♀"}
+					</span>
                     ${getFullName(character, 'official')}
-					${character.alignment ? `${character.alignment.morals || character.alignment.empathy ? ': ' : ''} <span style="color: blue;">${character.alignment.morals || character.alignment.empathy ? (character.alignment.morals !== character.alignment.empathy ? [character.alignment.morals, character.alignment.empathy].filter(Boolean).join(' ') : `true neutral`).toUpperCase() : ''}</span>` : ''}
-                    ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''}
+                    ${character.name[0][2] ? `<br>${'&nbsp'.repeat(4)}${getFullName(character, 'official', 2)}` : ''}
                 </a>`;
 				function appendCharacter() {
 					if (!letterList.includes(letter)) {
@@ -187,9 +206,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 			document.title = getFullName(character, 'casual');
 			document.getElementById(`character-name`).innerHTML = `${getFullName(character, 'casual')}${character.name[0][2] ? affix([character.name[0]?.[2], character.name[1]?.[2], character.name[2]?.[2]].filter(Boolean).join(' '), '<br>&nbsp&nbsp<i><sup><sub>', '</sub></sup></i>') : ''}`;
 			if (character.alignment) {
-				if (character.alignment.morals || character.alignment.empathy) {
-					document.getElementById('character-alignment').innerHTML = `<span style="color: blue; font-size: 1.5em; font-weight: bold;">${'&nbsp'.repeat(4)}${character.alignment.morals || character.alignment.empathy ? (character.alignment.morals !== character.alignment.empathy ? [character.alignment.morals, character.alignment.empathy].filter(Boolean).join(' ') : `true neutral`).toUpperCase() : ''}</span>`
-				}
+					document.getElementById('character-alignment').innerHTML = `<span style="color: blue; font-size: 1.5em; font-weight: bold;">${'&nbsp'.repeat(4)}${charAlign(character)}</span>`
 			}
 			if (character.tags) {
 				document.getElementById('character-tags').innerHTML = `Tags: <span style="color: red; font-style: italic;">${character.tags.map(tag => `#${tag}`).join(', ').toUpperCase()}</span>`;
