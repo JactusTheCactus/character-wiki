@@ -187,7 +187,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 			document.title = getFullName(character, 'casual');
 			document.getElementById(`character-name`).innerHTML = `${getFullName(character, 'casual')}${character.name[0][2] ? affix([character.name[0]?.[2], character.name[1]?.[2], character.name[2]?.[2]].filter(Boolean).join(' '), '<br>&nbsp&nbsp<i><sup><sub>', '</sub></sup></i>') : ''}`;
 			if (character.alignment) {
-				document.getElementById('character-alignment').innerHTML = `<span style="color: blue; font-size: 1.5em; font-weight: bold;">${'&nbsp'.repeat(4)}${character.alignment.morals || character.alignment.empathy ? (character.alignment.morals !== character.alignment.empathy ? [character.alignment.morals, character.alignment.empathy].filter(Boolean).join(' ') : `true neutral`).toUpperCase() : ''}</span>`
+				if (character.alignment.morals || character.alignment.empathy) {
+					document.getElementById('character-alignment').innerHTML = `<span style="color: blue; font-size: 1.5em; font-weight: bold;">${'&nbsp'.repeat(4)}${character.alignment.morals || character.alignment.empathy ? (character.alignment.morals !== character.alignment.empathy ? [character.alignment.morals, character.alignment.empathy].filter(Boolean).join(' ') : `true neutral`).toUpperCase() : ''}</span>`
+				}
 			}
 			if (character.tags) {
 				document.getElementById('character-tags').innerHTML = `Tags: <span style="color: red; font-style: italic;">${character.tags.map(tag => `#${tag}`).join(', ').toUpperCase()}</span>`;
