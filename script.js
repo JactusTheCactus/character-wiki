@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <span style='color:${character.sex === 'Male' ? "blue" : character.sex === 'Female' ? "red" : ''};'>
                         ${character.sex === 'Male' ? "♂" : character.sex === 'Female' ? "♀" : ''}</span>
                     ${getFullName(character, 'official')}
-					${character.alignment ? `: <span style="color: blue;">${character.alignment.morals || character.alignment.empathy ? (character.alignment.morals !== character.alignment.empathy ? [character.alignment.morals, character.alignment.empathy].filter(Boolean).join(' ') : `true neutral`).toUpperCase() : ''}</span>` : ''}
+					${character.alignment ? `${character.alignment.morals || character.alignment.empathy ? ': ' : ''} <span style="color: blue;">${character.alignment.morals || character.alignment.empathy ? (character.alignment.morals !== character.alignment.empathy ? [character.alignment.morals, character.alignment.empathy].filter(Boolean).join(' ') : `true neutral`).toUpperCase() : ''}</span>` : ''}
                     ${character.name[0][2] ? affix(getFullName(character, 'official', 2), `<br>${'&nbsp'.repeat(4)}`) : ''}
                 </a>`;
 				function appendCharacter() {
