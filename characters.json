@@ -30,7 +30,7 @@
             "sfw"
         ],
         "alignment": {
-            "morals": "neutral",
+            "morals": "chaotic",
             "empathy": "evil"
         }
     },
@@ -97,8 +97,8 @@
             "sfw"
         ],
         "alignment": {
-            "morals": "neutral",
-            "empathy": "neutral"
+            "morals": "",
+            "empathy": ""
         }
     },
     {
@@ -241,7 +241,7 @@
             "inhuman"
         ],
         "alignment": {
-            "morals": "neutral",
+            "morals": "",
             "empathy": "good"
         }
     },
@@ -308,8 +308,8 @@
             "sfw"
         ],
         "alignment": {
-            "morals": "neutral",
-            "empathy": "neutral"
+            "morals": "",
+            "empathy": ""
         }
     },
     {
@@ -341,8 +341,8 @@
             "sfw"
         ],
         "alignment": {
-            "morals": "neutral",
-            "empathy": "neutral"
+            "morals": "",
+            "empathy": ""
         }
     },
     {
@@ -376,7 +376,7 @@
         ],
         "alignment": {
             "morals": "neutral",
-            "empathy": "neutral"
+            "empathy": ""
         }
     },
     {
@@ -413,7 +413,7 @@
         ],
         "alignment": {
             "morals": "lawful",
-            "empathy": "neutral"
+            "empathy": ""
         }
     },
     {
@@ -479,8 +479,8 @@
             "sfw"
         ],
         "alignment": {
-            "morals": "neutral",
-            "empathy": "neutral"
+            "morals": "",
+            "empathy": ""
         }
     },
     {
@@ -546,8 +546,8 @@
             "sfw"
         ],
         "alignment": {
-            "morals": "neutral",
-            "empathy": "neutral"
+            "morals": "",
+            "empathy": ""
         }
     },
     {
@@ -613,8 +613,8 @@
             "human"
         ],
         "alignment": {
-            "morals": "neutral",
-            "empathy": "neutral"
+            "morals": "",
+            "empathy": ""
         }
     },
     {
@@ -715,7 +715,7 @@
         ],
         "alignment": {
             "morals": "lawful",
-            "empathy": "neutral"
+            "empathy": ""
         }
     },
     {
@@ -915,7 +915,7 @@
             "inhuman"
         ],
         "alignment": {
-            "morals": "neutral",
+            "morals": "",
             "empathy": "evil"
         }
     },
