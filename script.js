@@ -151,9 +151,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 					<span style="color: blue;">
 						${charAlign(character)}
 					</span>
-					<span style="color: red; font-style: italic;">
-						${tagsToShow.map(tag => `#${tag}`).join(', ').toUpperCase()}
-					</span>
+				</p>
+				<p>
+					${tagsToShow.map(tag => `<a href="${window.location.pathname}?include=default&exclude=default" style="color: red; font-style: italic;">#${tag.toUpperCase()}</a>`).join(', ')}
 				</p>
                     <span style='color:${character.sex === 'Male' ? "blue" : "red"};'>
                         ${character.sex === 'Male' ? "♂" : "♀"}
@@ -178,9 +178,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 			section.appendChild(ul);
 			list.appendChild(section);
 		});
+		var i = 0;
 		Object.keys(groupedCharacters).forEach(letter => {
 			const button = document.createElement("button");
-			button.textContent = letter;
+			button.innerHTML = `<span style="font-weight: bold; font-size: 2em;">${letter}&nbsp;</span>`;
 			button.className = "p-2 bg-gray-300 hover:bg-gray-400 rounded";
 			button.onclick = () => {
 				const section = document.getElementById(`letter-${letter}`);
@@ -188,7 +189,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 			};
 			if (letterList.includes(letter)) {
 				alphabeticalShortcuts.appendChild(button);
-			}
+				if ((i % 5) === 4) {
+					alphabeticalShortcuts.appendChild(document.createElement("br"))
+				}
+				i++
+			};
 		});
 		if (numCharacters === 0) { window.location.replace(`${window.location.pathname}?include=default&exclude=default`); }
 		document.getElementById('details').innerHTML = `${numCharacters} Character${numCharacters !== 1 ? 's' : ''}`;
@@ -206,7 +211,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 			document.title = getFullName(character, 'casual');
 			document.getElementById(`character-name`).innerHTML = `${getFullName(character, 'casual')}${character.name[0][2] ? affix([character.name[0]?.[2], character.name[1]?.[2], character.name[2]?.[2]].filter(Boolean).join(' '), '<br>&nbsp&nbsp<i><sup><sub>', '</sub></sup></i>') : ''}`;
 			if (character.alignment) {
-					document.getElementById('character-alignment').innerHTML = `<span style="color: blue; font-size: 1.5em; font-weight: bold;">${'&nbsp'.repeat(4)}${charAlign(character)}</span>`
+				document.getElementById('character-alignment').innerHTML = `<span style="color: blue; font-size: 1.5em; font-weight: bold;">${'&nbsp'.repeat(4)}${charAlign(character)}</span>`
 			}
 			if (character.tags) {
 				document.getElementById('character-tags').innerHTML = `Tags: <span style="color: red; font-style: italic;">${character.tags.map(tag => `#${tag}`).join(', ').toUpperCase()}</span>`;
